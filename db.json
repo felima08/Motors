@@ -5,12 +5,11 @@
       "name": "Felipe Gonçalves Santos Lima",
       "email": "felipe08gg@gmail.com",
       "password": "Felipe08"
-    },
-    {
-      "id": "a0ae",
-      "name": "Lucas Lima",
-      "email": "Lucas321@gmail.com",
-      "password": "Lucas123"
     }
+ 
+  ],
+  
+  "carros": [
+    {}
   ]
 }

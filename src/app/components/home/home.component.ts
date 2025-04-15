@@ -23,13 +23,13 @@ interface Car {
     <header class="header">
       <div class="logo-container">
         <h1 class="logo">
-          <mat-icon class="logo-icon">directions_car</mat-icon> Felipe Gonçalves Cars
+          <mat-icon class="logo-icon">directions_car</mat-icon> FG Premium Motors
         </h1>
       </div>
 
       <nav class="nav-menu">
         <a class="nav-link active">Inicio</a>
-        <a class="nav-link" >Perfil</a>
+        <a class="nav-link" routerLink="/perfil">Perfil</a>
         <a class="nav-link" href="https://wa.me/SEUNUMERODOTELEFONE" target="_blank">Contato</a>
         <a class="nav-red" (click)="logout()">Sair</a>
         <a class="nav-link cart-link" routerLink="/carrinho">
