@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
 interface User {
-  id?: number;
+  
   name: string;
   email: string;
   password?: string;
