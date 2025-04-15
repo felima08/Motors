@@ -1,15 +1,70 @@
 {
   "users": [
     {
-      "id": "9b2a",
+      "id": "1",
       "name": "Felipe Gonçalves Santos Lima",
       "email": "felipe08gg@gmail.com",
       "password": "Felipe08"
+    },
+    {
+      "id": "2",
+      "name": "marcia soares",
+      "email": "soares@gmail.com",
+      "password": "soares321",
+      "fotoPerfilUrl": "images.jpg"
     }
- 
   ],
+  "produtos": [
+    {
+      "id": "1",
+      "name": "Esportivo Azul Veloz",
+      "imageUrl": "/assets/images/esportivo_azul.jpg",
+      "price": 75000,
+      "description": "Um carro esportivo elegante e potente para quem busca adrenalina.",
+      "destaque": true
+    },
+    {
+      "id": "2",
+      "name": "Sedan Confortável Vermelho",
+      "imageUrl": "/assets/images/sedan_vermelho.jpg",
+      "price": 48000.5,
+      "description": "Ideal para a família, oferece conforto e segurança em cada viagem.",
+      "destaque": false
+    },
+    {
+      "id": "3",
+      "name": "SUV Aventura Cinza",
+      "imageUrl": "/assets/images/suv_cinza.jpg",
+      "price": 62500.99,
+      "description": "Pronto para qualquer aventura, com espaço e robustez para o seu dia a dia.",
+      "destaque": true
+    },
+    {
+      "id": "4",
+      "name": "Hatch Compacto Vermelho",
+      "imageUrl": "/assets/images/hatch_vermelho.jpg",
+      "price": 35200,
+      "description": "Ágil e econômico, perfeito para a cidade.",
+      "destaque": false
+    },
+    {
+      "id": "5",
+      "name": "Picape Robusta Preta",
+      "imageUrl": "/assets/images/picape_preta.jpg",
+      "price": 88900,
+      "description": "Força e capacidade para o trabalho e lazer.",
+      "destaque": false
+    },
+    {
+      "id": "6",
+      "name": "Elétrico Sustentável Branco",
+      "imageUrl": "/assets/images/eletrico_branco.jpg",
+      "price": 92100.75,
+      "description": "O futuro da mobilidade, com zero emissão e alta tecnologia.",
+      "destaque": true
+    }
+  ],
+  "compras": [
   
-  "carros": [
-    {}
   ]
 }

@@ -327,7 +327,7 @@ export class MeuFormularioComponent {
       const response = await this.apiService.login(this.loginData.email, this.loginData.senha).toPromise();
       if (response && response.length > 0) {
         localStorage.setItem('auth_token', 'token_simulado_' + Date.now());
-        localStorage.setItem('user', JSON.stringify(response[0]));
+        localStorage.setItem('loggedInUser', JSON.stringify(response[0]));
 
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
         this.snackBar.open('Login realizado com sucesso! Redirecionando...', 'Fechar', {

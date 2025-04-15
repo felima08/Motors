@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 interface Car {
   name: string;
@@ -12,15 +13,19 @@ interface Car {
 })
 export class CarrinhoService {
   private carrinho: Car[] = [];
+  private carrinhoSubject = new BehaviorSubject<Car[]>(this.carrinho);
+  carrinho$ = this.carrinhoSubject.asObservable();
 
   adicionarAoCarrinho(car: Car) {
     this.carrinho.push(car);
+    this.carrinhoSubject.next([...this.carrinho]);
   }
 
   removerDoCarrinho(car: Car) {
     const index = this.carrinho.findIndex(item => item.name === car.name);
     if (index > -1) {
       this.carrinho.splice(index, 1);
+      this.carrinhoSubject.next([...this.carrinho]);
     }
   }
 
@@ -30,5 +35,10 @@ export class CarrinhoService {
 
   limparCarrinho() {
     this.carrinho = [];
+    this.carrinhoSubject.next([...this.carrinho]);
+  }
+
+  getTotal(): number {
+    return this.carrinho.reduce((total, item) => total + item.price, 0);
   }
 }

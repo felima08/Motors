@@ -1,11 +1,14 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarrinhoService } from '../carrinho/carrinho.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiService } from '../../services/api.service';
+import { Subscription } from 'rxjs';
 
 interface CarroCarrinho {
   car: any;
@@ -25,7 +28,7 @@ interface CarroCarrinho {
   template: `
     <div class="cart-container">
       <div class="cart-header">
-        <h2><mat-icon>shopping_cart</mat-icon> Seu Carrinho de Compras</h2>
+        <h2><mat-icon>shopping_cart</mat-icon> Seu Carrinho</h2>
         <span class="item-count">{{ itensCarrinho.length }} {{ itensCarrinho.length === 1 ? 'item' : 'itens' }}</span>
       </div>
 
@@ -45,7 +48,7 @@ interface CarroCarrinho {
               <img [src]="item.car.imageUrl" alt="{{ item.car.name }}" (error)="handleImageError($event)">
               <div class="color-badge" *ngIf="item.car.color" [style.background-color]="item.car.colorHex || '#607d8b'"></div>
             </div>
-            
+
             <div class="item-details">
               <h3 class="item-name">{{ item.car.name }}</h3>
               <div class="item-meta">
@@ -55,7 +58,7 @@ interface CarroCarrinho {
                 </span>
               </div>
             </div>
-            
+
             <button mat-icon-button class="remove-btn" (click)="removerItem(item.car)" matTooltip="Remover item">
               <mat-icon>delete</mat-icon>
             </button>
@@ -67,68 +70,67 @@ interface CarroCarrinho {
         <div class="summary-section">
           <mat-card class="summary-card">
             <h3>Resumo da Compra</h3>
-            
+
             <div class="summary-row">
               <span>Subtotal</span>
               <span>R$ {{ total.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</span>
             </div>
-            
+
             <div class="summary-row">
               <span>Frete</span>
               <span class="free-shipping">Grátis</span>
             </div>
-            
+
             <mat-divider></mat-divider>
-            
+
             <div class="summary-row total">
               <strong>Total</strong>
               <strong>R$ {{ total.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</strong>
             </div>
-            
+
             <div class="action-buttons">
               <button mat-stroked-button routerLink="/home" class="continue-btn">
-                <mat-icon>chevron_left</mat-icon> Continuar Comprando
+                Continuar Comprando
               </button>
               <button mat-raised-button color="warn" (click)="limparCarrinho()" class="clear-btn">
-                <mat-icon>delete_sweep</mat-icon> Limpar Carrinho
+                Limpar Carrinho
               </button>
               <button mat-raised-button color="primary" (click)="finalizarCompra()" class="checkout-btn">
-                <mat-icon>check_circle</mat-icon> Finalizar Compra
+                Finalizar Compra
               </button>
             </div>
           </mat-card>
         </div>
       </div>
 
-      <!-- Modal de Confirmação -->
       <div *ngIf="showConfirmation" class="confirmation-overlay">
         <div class="confirmation-card">
           <button mat-icon-button class="close-btn" (click)="showConfirmation = false">
             <mat-icon>close</mat-icon>
           </button>
-          
+
           <div class="confirmation-header">
             <mat-icon class="confirmation-icon">check_circle</mat-icon>
             <h3>Compra Finalizada com Sucesso!</h3>
           </div>
-          
+
           <mat-divider></mat-divider>
-          
+
           <div class="confirmation-body">
             <p>Obrigado por sua compra!</p>
             <p><strong>Número do Pedido:</strong> #{{ gerarNumeroPedido() }}</p>
             <p><strong>Total:</strong> R$ {{ total.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</p>
             <p>Enviamos os detalhes para o seu e-mail.</p>
           </div>
-          
+
           <mat-divider></mat-divider>
-          
+
           <div class="confirmation-actions">
-            <button mat-raised-button color="primary" (click)="showConfirmation = false; limparCarrinho()">
-              <mat-icon>home</mat-icon> Voltar à Página Inicial
+            <button mat-raised-button color="primary" (click)="showConfirmation = false; limparCarrinho(); navigateToHome()">
+              Voltar à Página Inicial
             </button>
             <button mat-stroked-button color="primary" routerLink="/meus-pedidos">
-              <mat-icon>receipt</mat-icon> Ver Meus Pedidos
+              Ver Meus Pedidos
             </button>
           </div>
         </div>
@@ -136,110 +138,72 @@ interface CarroCarrinho {
     </div>
   `,
   styles: [`
-   
-
     .cart-container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      font-family: 'Roboto', sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
     }
 
     .cart-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid #bbdefb; /* light-blue */
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
     }
 
     .cart-header h2 {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #1976d2; /* primary-blue */
       margin: 0;
-      font-weight: 500;
-    }
-
-    .cart-header mat-icon {
-      color: #1976d2; /* primary-blue */
     }
 
     .item-count {
-      background: #1976d2; /* primary-blue */
-      color: white;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
+      background-color: #f0f0f0;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.9em;
     }
 
     .empty-cart {
       text-align: center;
-      padding: 3rem 0;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      color: #777;
     }
 
     .empty-icon {
-      font-size: 4rem;
-      width: 4rem;
-      height: 4rem;
-      color: #bbdefb; /* light-blue */
-      margin-bottom: 1rem;
-    }
-
-    .empty-cart h3 {
-      color: #1976d2; /* primary-blue */
-      margin-bottom: 0.5rem;
-    }
-
-    .empty-cart p {
-      color: #263238; /* text-dark */
-      margin-bottom: 1.5rem;
+      font-size: 2em;
+      margin-bottom: 10px;
     }
 
     .shop-button {
-      background: #1976d2;
-      color: white;
-      font-weight: 500;
+      margin-top: 20px;
     }
-
-   
 
     .cart-content {
-      display: grid;
-      grid-template-columns: 1fr 350px;
-      gap: 2rem;
+      display: flex;
+      gap: 20px;
     }
 
-    @media (max-width: 900px) {
-      .cart-content {
-        grid-template-columns: 1fr;
-      }
+    .items-section {
+      flex-grow: 1;
     }
 
     .cart-item {
       display: flex;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .cart-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      align-items: center;
+      border: 1px solid #eee;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
     }
 
     .item-image {
-      position: relative;
-      width: 180px;
-      height: 120px;
-      margin-right: 1.5rem;
-      border-radius: 6px;
+      width: 100px;
+      height: 70px;
+      margin-right: 15px;
       overflow: hidden;
+      border-radius: 5px;
     }
 
     .item-image img {
@@ -249,112 +213,91 @@ interface CarroCarrinho {
     }
 
     .color-badge {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
-      border: 2px solid white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      margin-left: 5px;
+      border: 1px solid #ccc;
     }
 
     .item-details {
-      flex: 1;
+      flex-grow: 1;
     }
 
     .item-name {
-      margin: 0 0 0.5rem 0;
-      color: var(--text-dark);
-      font-size: 1.1rem;
-      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-weight: bold;
     }
 
     .item-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
+      font-size: 0.9em;
+      color: #555;
     }
 
     .item-price {
-      color: var(--primary-blue);
       font-weight: bold;
-      font-size: 1.1rem;
+      color: #333;
     }
 
     .item-color {
       display: flex;
       align-items: center;
-      gap: 0.3rem;
-      color: var(--text-dark);
-      font-size: 0.9rem;
-    }
-
-    .item-color mat-icon {
-      font-size: 1rem;
-      width: 1rem;
-      height: 1rem;
-      color: var(--dark-blue);
+      gap: 5px;
     }
 
     .remove-btn {
-      color: #f44336;
-      align-self: flex-start;
+      color: #d32f2f;
+    }
+
+    .summary-section {
+      width: 300px;
     }
 
     .summary-card {
-      padding: 1.5rem;
-      position: sticky;
-      top: 1rem;
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 5px;
     }
 
     .summary-card h3 {
       margin-top: 0;
-      color: var(--primary-blue);
-      font-weight: 500;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
     }
 
     .summary-row {
       display: flex;
       justify-content: space-between;
-      margin: 1rem 0;
-    }
-
-    .free-shipping {
-      color: #4caf50;
-      font-weight: 500;
+      margin-bottom: 10px;
     }
 
     .total {
-      font-size: 1.2rem;
-      margin: 1.5rem 0;
+      font-weight: bold;
+      font-size: 1.1em;
     }
 
     .action-buttons {
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 2rem;
+      gap: 10px;
+      margin-top: 20px;
     }
 
     .continue-btn {
-      border-color: var(--primary-blue);
-      color: var(--primary-blue);
+      border: 1px solid #1976d2;
+      color: #1976d2;
     }
 
     .clear-btn {
-      background: #f44336;
+      background-color: #f44336;
       color: white;
     }
 
     .checkout-btn {
-      background: #1976d2;
+      background-color: #1976d2;
       color: white;
-      font-weight: 500;
-    }
-
-    button mat-icon {
-      margin-right: 0.5rem;
     }
 
     /* Estilos para a confirmação de compra */
@@ -373,89 +316,63 @@ interface CarroCarrinho {
 
     .confirmation-card {
       background: white;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 500px;
-      padding: 24px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      position: relative;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
     }
 
     .close-btn {
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      color: #777;
     }
 
     .confirmation-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .confirmation-icon {
-      color: #4CAF50;
-      font-size: 60px;
-      width: 60px;
-      height: 60px;
-      margin-bottom: 16px;
-    }
-
-    .confirmation-header h3 {
-      color: var(--primary-blue);
-      margin: 0;
-      text-align: center;
+      font-size: 2em;
+      color: #4caf50;
+      margin-bottom: 10px;
     }
 
     .confirmation-body {
-      padding: 16px 0;
-      color: var(--text-dark);
-    }
-
-    .confirmation-body p {
-      margin: 8px 0;
+      margin-bottom: 20px;
     }
 
     .confirmation-actions {
       display: flex;
+      gap: 10px;
       justify-content: center;
-      gap: 16px;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    .confirmation-actions button {
-      margin: 0;
-    }
-
-    @media (max-width: 600px) {
-      .confirmation-card {
-        width: 90%;
-        padding: 16px;
-      }
-      
-      .confirmation-actions {
-        flex-direction: column;
-        gap: 8px;
-      }
-      
-      .confirmation-actions button {
-        width: 100%;
-      }
     }
   `]
 })
-export class CarrinhoComponent implements OnInit {
+export class CarrinhoComponent implements OnInit, OnDestroy {
   itensCarrinho: CarroCarrinho[] = [];
   total: number = 0;
   showConfirmation: boolean = false;
 
   private carrinhoService = inject(CarrinhoService);
+  private apiService = inject(ApiService);
+  private snackBar = inject(MatSnackBar);
+  private router = inject(Router);
+  private carrinhoSubscription: Subscription | undefined;
 
   ngOnInit(): void {
-    this.itensCarrinho = this.carrinhoService.getCarrinho().map(car => ({ car }));
-    this.calcularTotal();
+    this.carrinhoSubscription = this.carrinhoService.carrinho$.subscribe(cars => {
+      this.itensCarrinho = cars.map(car => ({ car }));
+      this.calcularTotal();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.carrinhoSubscription) {
+      this.carrinhoSubscription.unsubscribe();
+    }
   }
 
   handleImageError(event: any) {
@@ -464,25 +381,47 @@ export class CarrinhoComponent implements OnInit {
 
   removerItem(car: any): void {
     this.carrinhoService.removerDoCarrinho(car);
-    this.itensCarrinho = this.carrinhoService.getCarrinho().map(c => ({ car: c }));
-    this.calcularTotal();
   }
 
   limparCarrinho(): void {
     this.carrinhoService.limparCarrinho();
-    this.itensCarrinho = [];
-    this.total = 0;
   }
 
   calcularTotal(): void {
-    this.total = this.itensCarrinho.reduce((sum, item) => sum + item.car.price, 0);
+    this.total = this.carrinhoService.getTotal();
   }
 
   finalizarCompra(): void {
-    this.showConfirmation = true;
+    if (this.itensCarrinho.length > 0) {
+      const detalhesCompra = {
+        itensComprados: this.itensCarrinho.map(item => ({
+          name: item.car.name,
+          price: item.car.price
+        })),
+        total: this.total,
+        dataCompra: new Date().toISOString(),
+        // Adicione aqui informações do usuário se estiver disponível
+      };
+
+      this.apiService.salvarCompra(detalhesCompra).subscribe({
+        next: (response: any) => {
+          this.showConfirmation = true;
+        },
+        error: (error: any) => {
+          this.snackBar.open('Erro ao finalizar a compra.', 'Fechar', { duration: 3000 });
+          console.error('Erro ao salvar compra:', error);
+        }
+      });
+    } else {
+      this.snackBar.open('Seu carrinho está vazio. Adicione itens para finalizar a compra.', 'Fechar', { duration: 3000 });
+    }
   }
 
   gerarNumeroPedido(): string {
     return Math.random().toString(36).substring(2, 10).toUpperCase();
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/home']);
   }
 }
