@@ -52,12 +52,12 @@ export class DetalhesComponent implements OnInit {
 
   buscarCarro() {
     const carros: Car[] = [
-      { id: 1, name: 'Esportivo Azul Veloz', imageUrl: 'pexels-wavyvisuals-377312923-19938881.jpg', price: 75000.00, description: '...' },
-      { id: 2, name: 'Sedan Confortável Prata', imageUrl: '...', price: 48000.50, description: '...' },
-      { id: 3, name: 'SUV Aventura Cinza', imageUrl: '...', price: 62500.99, description: '...' },
-      { id: 4, name: 'Hatch Compacto Vermelho', imageUrl: '...', price: 35200.00, description: '...' },
-      { id: 5, name: 'Picape Robusta Preta', imageUrl: '...', price: 88900.00, description: '...' },
-      { id: 6, name: 'Elétrico Sustentável Branco', imageUrl: '...', price: 92100.75, description: '...' },
+      { id: 1, name: 'Esportivo Azul Veloz', imageUrl: 'carro azul esportivo.jpg', price: 75000.00, description: '...' },
+      { id: 2, name: 'Sedan Confortável Prata', imageUrl: 'prata.jpg', price: 48000.50, description: '...' },
+      { id: 3, name: 'SUV Aventura Cinza', imageUrl: 'suv cinza.jpg', price: 62500.99, description: '...' },
+      { id: 4, name: 'Hatch Compacto Vermelho', imageUrl: 'Hatch Compacto Vermelho.jpg', price: 35200.00, description: '...' },
+      { id: 5, name: 'Picape Robusta Preta', imageUrl: 'Picape Robusta Preta.jpg', price: 88900.00, description: '...' },
+      { id: 6, name: 'Elétrico Sustentável Branco', imageUrl: 'Elétrico Sustentável Branco.jpg', price: 92100.75, description: '...' },
     ];
     this.carro = carros.find(car => car.name.toLowerCase().replace(/ /g, '-') === this.nomeCarro);
     if (this.carro) {

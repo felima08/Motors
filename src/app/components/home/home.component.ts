@@ -50,12 +50,12 @@ interface Message {
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   cars: Car[] = [
-    { name: 'Esportivo Azul Veloz', imageUrl: '/pexels-wavyvisuals-377312923-19938881.jpg', price: 75000.00, description: 'Um carro esportivo elegante e potente para quem busca adrenalina.', destaque: true, estoque: 5, vendido: false },
-    { name: 'Sedan Confortável Vermelho', imageUrl: '/pexels-egeardaphotos-2148533277-31575930.jpg', price: 48000.50, description: 'Ideal para a família, oferece conforto e segurança em cada viagem.', destaque: true, estoque: 3, vendido: false },
-    { name: 'SUV Aventura Cinza', imageUrl: 'L66325GL_303103289_077-1024x576.jpeg', price: 62500.99, description: 'Pronto para qualquer aventura, com espaço e robustez para o seu dia a dia.', destaque: true, estoque: 2, vendido: false },
-    { name: 'Hatch Compacto Vermelho', imageUrl: 'pexels-jisso-heby-597210750-26834309.jpg', price: 35200.00, description: 'Ágil e econômico, perfeito para a cidade.', destaque: true, estoque: 7, vendido: false },
-    { name: 'Picape Robusta Preta', imageUrl: 'images.jpg', price: 88900.00, description: 'Força e capacidade para o trabalho e lazer.', destaque: true, estoque: 0, vendido: true },
-    { name: 'Elétrico Sustentável Branco', imageUrl: '01.jpg', price: 92100.75, description: 'O futuro da mobilidade, com zero emissão e alta tecnologia.', destaque: true, estoque: 8, vendido: false },
+    { name: 'Esportivo Azul Veloz', imageUrl: '/carro azul esportivo.jpg', price: 75000.00, description: 'Um carro esportivo elegante e potente para quem busca adrenalina.', destaque: true, estoque: 5, vendido: false },
+    { name: 'Sedan Confortável Vermelho', imageUrl: 'prata.jpg', price: 48000.50, description: 'Ideal para a família, oferece conforto e segurança em cada viagem.', destaque: true, estoque: 3, vendido: false },
+    { name: 'SUV Aventura Cinza', imageUrl: 'suv cinza.jpg', price: 62500.99, description: 'Pronto para qualquer aventura, com espaço e robustez para o seu dia a dia.', destaque: true, estoque: 2, vendido: false },
+    { name: 'Hatch Compacto Vermelho', imageUrl: 'Hatch Compacto Vermelho.jpg', price: 35200.00, description: 'Ágil e econômico, perfeito para a cidade.', destaque: true, estoque: 7, vendido: false },
+    { name: 'Picape Robusta Preta', imageUrl: 'Picape Robusta Preta.jpg', price: 88900.00, description: 'Força e capacidade para o trabalho e lazer.', destaque: true, estoque: 0, vendido: true },
+    { name: 'Elétrico Sustentável Branco', imageUrl: 'Elétrico Sustentável Branco.jpg', price: 92100.75, description: 'O futuro da mobilidade, com zero emissão e alta tecnologia.', destaque: true, estoque: 8, vendido: false },
   ];
 
   carsDestaque: Car[] = [];
