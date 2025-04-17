@@ -1,1 +1,80 @@
-<p>carrinho works!</p>
+<app-header></app-header>
+
+<div class="cart-container">
+  <div class="cart-header">
+    <h2><mat-icon>shopping_cart</mat-icon> Seu Carrinho</h2>
+    <span class="item-count">{{ itensCarrinho.length }} {{ itensCarrinho.length === 1 ? 'item' : 'itens' }}</span>
+  </div>
+
+  <div *ngIf="itensCarrinho.length === 0" class="empty-cart">
+    <mat-icon class="empty-icon">remove_shopping_cart</mat-icon>
+    <h3>Seu carrinho está vazio</h3>
+    <p>Explore nossos veículos e encontre o perfeito para você!</p>
+    <button mat-raised-button color="primary" routerLink="/home" class="shop-button">
+      <mat-icon>directions_car</mat-icon> Voltar para a Loja
+    </button>
+  </div>
+
+  <div *ngIf="itensCarrinho.length > 0" class="cart-content">
+    <div class="items-section">
+      <mat-card *ngFor="let item of itensCarrinho" class="cart-item">
+        <div class="item-image">
+          <img [src]="item.car.imageUrl" alt="{{ item.car.name }}" (error)="handleImageError($event)">
+          <div class="color-badge" *ngIf="item.car.color" [style.background-color]="item.car.colorHex || '#607d8b'"></div>
+        </div>
+
+        <div class="item-details">
+          <h3 class="item-name">{{ item.car.name }}</h3>
+          <div class="item-meta">
+            <span class="item-price">R$ {{ item.car.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</span>
+            <span *ngIf="item.car.color" class="item-color">
+              <mat-icon>palette</mat-icon> {{ item.car.color }}
+            </span>
+          </div>
+        </div>
+
+        <button mat-icon-button class="remove-btn" (click)="removerItem(item.car)" matTooltip="Remover item">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="summary-section">
+      <mat-card class="summary-card">
+        <h3>Resumo da Compra</h3>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>R$ {{ total.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Frete</span>
+          <span class="free-shipping">Grátis</span>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="summary-row total">
+          <strong>Total</strong>
+          <strong>R$ {{ total.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</strong>
+        </div>
+
+        <div class="action-buttons">
+          <button mat-stroked-button routerLink="/home" class="continue-btn">
+            Continuar Comprando
+          </button>
+          <button mat-raised-button color="warn" (click)="limparCarrinho()" class="clear-btn">
+            Limpar Carrinho
+          </button>
+          <button mat-raised-button  routerLink="checkout/entrega" color="primary" (click)="prosseguirParaEntrega()" class="checkout-btn">
+            Prosseguir para Entrega
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

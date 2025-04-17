@@ -1,1 +1,176 @@
+<div class="profile-container">
+  <a routerLink="/home" class="back-home-arrow">
+    <mat-icon>arrow_back</mat-icon>
+  </a>
+  <div class="profile-header">
+    <div class="profile-image">
+      <img [src]="fotoPerfilUrl" alt="Foto de Perfil">
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+        style="display: none;"
+        #fileInput
+      />
+      <button
+        mat-icon-button
+        color="accent"
+        class="edit-image-button"
+        (click)="fileInput.click()"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <h1>{{ nomeUsuario }}</h1>
+    <p class="email">{{ email }}</p>
+  </div>
 
+  <div class="favorites-banner">
+    <button mat-raised-button color="accent" (click)="alternarMostrarFavoritos()">
+      <mat-icon>favorite</mat-icon> Ver seus Carros Favoritos
+    </button>
+  </div>
+
+  <div *ngIf="mostrarFavoritos" class="favoritos-section">
+    <mat-card class="profile-card" *ngIf="carrosFavoritos.length > 0">
+      <mat-card-title>Carros Favoritos</mat-card-title>
+      <mat-card-content>
+        <mat-grid-list cols="3" rowHeight="380px" gutterSize="20px">
+          <mat-grid-tile *ngFor="let carro of carrosFavoritos">
+            <mat-card class="car-card">
+              <img
+                mat-card-image
+                [src]="carro.imageUrl"
+                alt="{{ carro.name }}"
+              />
+              <mat-card-header>
+                <mat-card-title>{{ carro.name }}</mat-card-title>
+                <mat-card-subtitle>
+                  R$
+                  {{
+                    carro.price?.toLocaleString('pt-BR', {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })
+                  }}
+                </mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="profile-card" *ngIf="carrosFavoritos.length === 0">
+      <mat-card-content>Nenhum carro adicionado aos favoritos ainda.</mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card class="profile-card">
+    <mat-card-title>
+      Informações Pessoais
+      <button mat-icon-button color="accent" (click)="alternarEditarDadosPessoais()">
+        <mat-icon>{{ editarDadosPessoais ? 'save' : 'edit' }}</mat-icon>
+      </button>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" [value]="nomeUsuario" disabled />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [value]="email" disabled />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>CPF</mat-label>
+        <input matInput type="text" [(ngModel)]="cpf" [disabled]="!editarDadosPessoais" />
+        <mat-icon matSuffix>assignment</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Número de Telefone</mat-label>
+        <input matInput type="tel" [(ngModel)]="telefone" [disabled]="!editarDadosPessoais" />
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="salvarDadosPessoais()" [disabled]="!editarDadosPessoais">
+        Salvar Dados Pessoais
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="profile-card">
+    <mat-card-title>Endereço</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Endereço</mat-label>
+        <input matInput type="text" [(ngModel)]="endereco" />
+        <mat-icon matSuffix>home</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Cidade</mat-label>
+        <input matInput type="text" [(ngModel)]="cidade" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Estado</mat-label>
+        <input matInput type="text" [(ngModel)]="estado" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>CEP</mat-label>
+        <input matInput type="text" [(ngModel)]="cep" />
+        <mat-icon matSuffix>local_post_office</mat-icon>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="salvarEndereco()">
+        Salvar Endereço
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="profile-card">
+    <mat-card-title>Alterar Senha</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Senha Atual</mat-label>
+        <input matInput type="password" [(ngModel)]="senhaAtual" />
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nova Senha</mat-label>
+        <input matInput type="password" [(ngModel)]="novaSenha" />
+        <mat-icon matSuffix>lock_open</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Confirmar Nova Senha</mat-label>
+        <input matInput type="password" [(ngModel)]="confirmarNovaSenha" />
+        <mat-icon matSuffix>lock_outline</mat-icon>
+      </mat-form-field>
+      <button mat-raised-button color="warn" (click)="alterarSenha()">
+        Alterar Senha
+      </button>
+      <div *ngIf="mensagemSenha" class="password-message">
+        {{ mensagemSenha }}
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="profile-card">
+    <mat-card-title>Outras Configurações</mat-card-title>
+    <mat-card-content>
+      <mat-checkbox
+        class="full-width"
+        [(ngModel)]="receberNotificacoes"
+        (change)="salvarNotificacoes()"
+      >
+        Receber notificações por email
+      </mat-checkbox>
+    </mat-card-content>
+  </mat-card>
+</div>

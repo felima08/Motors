@@ -1,0 +1,213 @@
+.profile-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza os itens horizontalmente */
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%; /* Garante que o header ocupe a largura total para o alinhamento central funcionar */
+  max-width: 600px; /* Mantém a largura máxima */
+}
+
+.profile-image {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; /* Adiciona cursor para indicar que é clicável */
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-image input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.edit-image-button {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.edit-image-button mat-icon {
+  font-size: 18px;
+}
+
+.profile-header h1 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #3f51b5;
+  text-align: center; /* Centraliza o texto do título */
+}
+
+.profile-header .email {
+  color: #777;
+  margin-bottom: 15px;
+  text-align: center; /* Centraliza o texto do email */
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.profile-card mat-card-title {
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  color: #3f51b5;
+}
+
+.profile-card mat-card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.password-message {
+  margin-top: 10px;
+  color: green;
+  font-weight: bold;
+}
+
+.back-home-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0; /* Cor de fundo opcional */
+  color: #3f51b5; /* Cor do ícone */
+  border-radius: 50%; /* Para torná-lo circular */
+  width: 40px; /* Ajuste o tamanho conforme necessário */
+  height: 40px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px; /* Espaçamento abaixo da seta */
+}
+
+.back-home-arrow:hover {
+  background-color: #e0e0e0;
+}
+
+.back-home-arrow .mat-icon {
+  font-size: 24px; /* Ajuste o tamanho do ícone */
+}
+
+/* Estilos para a seção de carros favoritos */
+.favoritos-section {
+  margin-top: 20px;
+  width: 100%; /* Garante que a seção ocupe a largura total para o alinhamento */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo da seção */
+}
+
+
+.favoritos-section .profile-card mat-card-title {
+  /* ... outros estilos ... */
+  text-align: center; /* Centraliza o título dos favoritos */
+  margin-bottom: 20px; /* Adiciona espaço abaixo do título */
+}
+
+.favoritos-section .profile-card mat-card-content {
+  padding: 16px;
+  /* O display flex column pode não ser ideal para a grade */
+  display: block; /* Permite que a mat-grid-list organize os itens */
+}
+
+.favoritos-section .profile-card mat-card-content mat-grid-list {
+  margin-top: 10px; /* Adiciona um pouco de espaço acima da grade */
+}
+
+.favoritos-section .profile-card mat-card-content mat-grid-list mat-grid-tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.favoritos-section .profile-card .car-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  width: 90%; /* Ajuste a largura dos cards dentro da grade */
+  max-width: 200px; /* Largura máxima para os cards */
+}
+
+.favoritos-section .profile-card .car-card img {
+  width: 100%;
+  height: 150px; /* Altura fixa para as imagens */
+  object-fit: cover;
+}
+
+.favoritos-section .profile-card .car-card mat-card-header {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centraliza o conteúdo do header */
+  padding: 16px;
+  text-align: center; /* Centraliza o texto dentro do header */
+}
+
+.favoritos-section .profile-card .car-card mat-card-title {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.favoritos-section .profile-card .car-card mat-card-subtitle {
+  color: #777;
+  font-size: 0.8em;
+}
+
+.favoritos-section .profile-card[ng-reflect-ng-if="false"] {
+  display: flex;
+  justify-content: center;
+}
+
+.favorites-banner {
+  display: flex;
+  justify-content: center; /* Centraliza o botão horizontalmente */
+  padding: 16px; /* Adiciona um pouco de espaço ao redor */
+  background-color: #f4f4f4; /* Cor de fundo suave */
+  border-bottom: 1px solid #e0e0e0; /* Linha divisória sutil */
+}

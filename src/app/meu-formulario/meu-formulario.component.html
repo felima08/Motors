@@ -1,0 +1,81 @@
+<div class="full-screen-container">
+    <div class="form-container">
+      <div *ngIf="currentView === 'welcome'" class="welcome-panel">
+        <h2>Bem-vindo!</h2>
+        <p class="welcome-text">Escolha entre <span class="highlight">login</span> e <span class="highlight">cadastro</span> para acessar nossa plataforma.</p>
+        <button mat-raised-button color="primary" class="welcome-button" (click)="showLogin()">Login</button>
+        <button mat-raised-button color="accent" class="welcome-button" (click)="showRegister()">Cadastrar</button>
+      </div>
+  
+      <div *ngIf="currentView === 'login'" class="form-panel">
+        <div class="panel-content">
+          <h2 class="form-title">Entrar</h2>
+          <p class="welcome-text">Mantenha-se conectado! Insira suas informações de login para acessar sua conta.</p>
+  
+          <form class="login-form" (ngSubmit)="onLoginWithApi()">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput [(ngModel)]="loginData.email" name="loginEmail" required>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input matInput [type]="hideLoginPassword ? 'password' : 'text'"
+                     [(ngModel)]="loginData.senha" name="loginSenha" required>
+              <button mat-icon-button matSuffix (click)="hideLoginPassword = !hideLoginPassword" type="button">
+                <mat-icon>{{hideLoginPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+  
+            <mat-checkbox class="remember-me" [(ngModel)]="loginData.lembrarMe" name="loginLembrarMe">
+              Lembrar-me
+            </mat-checkbox>
+  
+            <button mat-raised-button color="primary" type="submit" class="submit-button" [disabled]="!loginIsValid()">
+              Entrar
+            </button>
+          </form>
+  
+          <button mat-button class="switch-button" (click)="showRegister()">Ainda não tem uma conta? <span class="underline">Cadastre-se</span></button>
+        </div>
+      </div>
+  
+      <div *ngIf="currentView === 'register'" class="form-panel">
+        <div class="panel-content">
+          <h2 class="form-title">Criar Conta</h2>
+          <p class="welcome-text">Comece sua jornada conosco! Preencha o formulário para criar sua nova conta.</p>
+  
+          <form class="register-form" (ngSubmit)="onSubmitWithApi()">
+            <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput [(ngModel)]="formData.nome" name="nome" required>
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput [formControl]="emailFormControl" name="email" required>
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error *ngIf="emailFormControl.hasError('email')">Por favor, insira um email válido</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input matInput [type]="hidePassword ? 'password' : 'text'"
+                     [(ngModel)]="formData.senha" name="senha" required>
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+  
+            <button mat-raised-button color="accent" type="submit" class="submit-button" [disabled]="!formIsValid()">
+              Criar Conta
+            </button>
+          </form>
+  
+          <button mat-button class="switch-button" (click)="showLogin()">Já tem uma conta? <span class="underline">Faça login</span></button>
+        </div>
+      </div>
+    </div>
+  </div>

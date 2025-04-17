@@ -1,0 +1,116 @@
+<app-header></app-header>
+
+<div class="checkout-container">
+  <h1>Checkout</h1>
+
+  <div *ngIf="!pedidoConcluido">
+    <div *ngIf="etapaAtual === 1">
+      <h2>Informações de Entrega</h2>
+      <form [formGroup]="entregaForm" class="checkout-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Endereço</mat-label>
+          <input matInput formControlName="endereco" required>
+          <mat-error *ngIf="entregaForm.get('endereco')?.hasError('required')">O endereço é obrigatório.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Cidade</mat-label>
+          <input matInput formControlName="cidade" required>
+          <mat-error *ngIf="entregaForm.get('cidade')?.hasError('required')">A cidade é obrigatória.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <input matInput formControlName="estado" required>
+          <mat-error *ngIf="entregaForm.get('estado')?.hasError('required')">O estado é obrigatório.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>CEP</mat-label>
+          <input matInput formControlName="cep" required pattern="^\d{5}-\d{3}$">
+          <mat-error *ngIf="entregaForm.get('cep')?.hasError('required')">O CEP é obrigatório.</mat-error>
+          <mat-error *ngIf="entregaForm.get('cep')?.hasError('pattern')">CEP inválido (formato: 00000-000).</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Método de Envio</mat-label>
+          <mat-select formControlName="metodoEnvio" required>
+            <mat-option value="PAC">PAC</mat-option>
+            <mat-option value="SEDEX">SEDEX</mat-option>
+            <mat-option value="Transportadora">Transportadora</mat-option>
+          </mat-select>
+          <mat-error *ngIf="entregaForm.get('metodoEnvio')?.hasError('required')">O método de envio é obrigatório.</mat-error>
+        </mat-form-field>
+        <div class="actions">
+          <button mat-button (click)="voltarParaCarrinho()"><mat-icon>chevron_left</mat-icon> Voltar para o Carrinho</button>
+          <button mat-raised-button  color="primary" (click)="avancarEtapa()" [disabled]="entregaForm.invalid">Prosseguir para Pagamento <mat-icon>chevron_right</mat-icon></button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="etapaAtual === 2">
+      <h2>Informações de Pagamento</h2>
+      <form [formGroup]="pagamentoForm" class="checkout-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Número do Cartão</mat-label>
+          <input matInput formControlName="numeroCartao" required pattern="^\d{16}$">
+          <mat-error *ngIf="pagamentoForm.get('numeroCartao')?.hasError('required')">Número do cartão é obrigatório.</mat-error>
+          <mat-error *ngIf="pagamentoForm.get('numeroCartao')?.hasError('pattern')">Número do cartão inválido.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Nome do Titular</mat-label>
+          <input matInput formControlName="nomeTitular" required>
+          <mat-error *ngIf="pagamentoForm.get('nomeTitular')?.hasError('required')">Nome do titular é obrigatório.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Data de Validade (MM/AA)</mat-label>
+          <input matInput formControlName="dataValidade" required pattern="^(0[1-9]|1[0-2])\/[0-9]{2}$">
+          <mat-error *ngIf="pagamentoForm.get('dataValidade')?.hasError('required')">Data de validade é obrigatória.</mat-error>
+          <mat-error *ngIf="pagamentoForm.get('dataValidade')?.hasError('pattern')">Data de validade inválida (MM/AA).</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>CVV</mat-label>
+          <input matInput formControlName="cvv" required pattern="^\d{3,4}$">
+          <mat-error *ngIf="pagamentoForm.get('cvv')?.hasError('required')">CVV é obrigatório.</mat-error>
+          <mat-error *ngIf="pagamentoForm.get('cvv')?.hasError('pattern')">CVV inválido.</mat-error>
+        </mat-form-field>
+        <div class="actions">
+          <button mat-button (click)="voltarEtapa()"><mat-icon>chevron_left</mat-icon> Voltar para Entrega</button>
+          <button mat-raised-button color="primary" (click)="avancarEtapa()" [disabled]="pagamentoForm.invalid">Prosseguir para Confirmação <mat-icon>chevron_right</mat-icon></button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="etapaAtual === 3">
+      <h2>Confirmação do Pedido</h2>
+      <mat-list>
+        <mat-list-item *ngFor="let item of itensCarrinho">
+          <div matListItemTitle>{{ item.name }}</div>
+          <div matListItemLine>Preço: R$ {{ item.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <div matListItemTitle>Total</div>
+          <div matListItemLine>R$ {{ total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <strong>Endereço:</strong> {{ entregaForm.value.endereco }}, {{ entregaForm.value.cidade }} - {{ entregaForm.value.estado }}, CEP: {{ entregaForm.value.cep }}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>Método de Envio:</strong> {{ entregaForm.value.metodoEnvio }}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>Forma de Pagamento:</strong> Cartão (simulado) - ****-****-****-{{ pagamentoForm.value.numeroCartao.slice(-4) }}
+        </mat-list-item>
+      </mat-list>
+      <div class="actions">
+        <button mat-button (click)="voltarEtapa()"><mat-icon>chevron_left</mat-icon> Voltar para Pagamento</button>
+        <button mat-raised-button color="accent" (click)="finalizarPedido()">Finalizar Pedido <mat-icon>check</mat-icon></button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="pedidoConcluido" class="pedido-concluido">
+    <h2>Pedido Concluído!</h2>
+    <mat-icon class="success-icon">check_circle_outline</mat-icon>
+    <p>Obrigado por sua compra!</p>
+    <p><strong>Número do Pedido:</strong> #{{ numeroPedidoSimulado }}</p>
+    <button mat-raised-button color="primary" routerLink="/home">Voltar para a Loja <mat-icon>store</mat-icon></button>
+  </div>
+</div>

@@ -1,1 +1,56 @@
-<p>detalhes works!</p>
+<div>
+  <app-header></app-header>
+</div>
+
+<div class="detalhes-container">
+  <h2 class="detalhes-titulo">Detalhes do Carro</h2>
+  <div *ngIf="carro" class="carro-detalhe">
+    <h3 class="carro-nome">{{ carro.name }}</h3>
+    <button
+      mat-button
+      [class.favoritado]="isFavoritado"
+      (click)="toggleFavorito()"
+      class="favorito-button"
+    >
+      <mat-icon [style.color]="isFavoritado ? 'primary' : ''"
+        >{{ isFavoritado ? 'favorite' : 'favorite_border' }}</mat-icon
+      >
+      {{ isFavoritado ? 'Desfavoritar' : 'Favoritar' }}
+    </button>
+    <img
+      [src]="carro.imageUrl"
+      alt="{{ carro.name }}"
+      class="carro-imagem"
+    />
+    <p class="preco">
+      R$
+      {{
+        carro.price?.toLocaleString('pt-BR', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })
+      }}
+    </p>
+    <p class="descricao">{{ carro.description }}</p>
+    <div class="acoes-detalhe">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="adicionarAoCarrinhoNoService(carro)"
+      >
+        Adicionar ao Carrinho
+      </button>
+      <button
+        mat-button
+        color="accent"
+        routerLink="/home"
+        class="voltar-button"
+      >
+        Voltar para a Loja
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!carro">
+    <p>Carro não encontrado.</p>
+  </div>
+</div>

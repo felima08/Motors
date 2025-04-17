@@ -1,0 +1,75 @@
+.header {
+    background-color: #3f51b5;
+    color: white;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .logo {
+    margin: 0;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  
+  .logo-icon {
+    margin-right: 0.5em;
+    cursor: pointer;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 1em;
+    cursor: pointer;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .nav-link:hover {
+    background-color: #303f9f;
+  }
+  
+  .nav-link.active {
+    font-weight: bold;
+  }
+  
+  .nav-red {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #dc3545; /* Vermelho Bootstrap */
+  }
+  
+  .cart-link {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 20px;
+  }
+  
+  .cart-link mat-icon {
+    margin-right: 0.3em;
+  }

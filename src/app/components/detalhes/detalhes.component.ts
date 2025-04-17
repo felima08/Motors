@@ -1,51 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+// detalhes.component.ts
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { CarrinhoService } from '../carrinho/carrinho.service';
+import { HeaderComponent } from "../header/header.component";
+import { FavoritosService } from '../perfil/favoritos.service';// Importe o FavoritosService
 
-interface Car {
+interface Car  {
   name: string;
   imageUrl: string;
   price: number;
   description: string;
+  destaque?: boolean;
+  id?: number;
 }
 
 @Component({
   selector: 'app-detalhes',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatSnackBarModule],
-  template: `
-    <div class="detalhes-container">
-      <h2>Detalhes do Carro</h2>
-      <div *ngIf="carro">
-        <h3>{{ carro.name }}</h3>
-        <img [src]="carro.imageUrl" alt="{{ carro.name }}" class="carro-imagem">
-        <p class="preco">R$ {{ carro.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</p>
-        <p class="descricao">{{ carro.description }}</p>
-        <button mat-raised-button color="primary" (click)="adicionarAoCarrinhoNoService(carro)">
-          <mat-icon>add_shopping_cart</mat-icon> Adicionar ao Carrinho
-        </button>
-        <button mat-button color="accent" routerLink="/home">Voltar para a Loja</button>
-      </div>
-      <div *ngIf="!carro">
-        <p>Carro não encontrado.</p>
-      </div>
-    </div>
-  `,
-  styles: [`
-    /* ... seus estilos CSS do DetalhesComponent ... */
-  `],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatSnackBarModule, RouterModule, HeaderComponent],
+  templateUrl: './detalhes.component.html',
+  styleUrls: ['./detalhes.component.css']
 })
 export class DetalhesComponent implements OnInit {
   nomeCarro: string = '';
   carro: Car | undefined;
+  isFavoritado: boolean = false;
+  favoritosService = inject(FavoritosService); // Injete o FavoritosService
 
   constructor(
     private route: ActivatedRoute,
-    private carrinhoServie:CarrinhoService,
+    private carrinhoServie: CarrinhoService,
     private snackBar: MatSnackBar,
     private router: Router,
   ) {}
@@ -55,25 +43,44 @@ export class DetalhesComponent implements OnInit {
       this.nomeCarro = params['nome'];
       this.buscarCarro();
     });
+    this.favoritosService.favoritos$.subscribe(favoritos => {
+      if (this.carro) {
+        this.isFavoritado = favoritos.some(fav => fav.name === this.carro!.name);
+      }
+    });
   }
 
   buscarCarro() {
     const carros: Car[] = [
-      { name: 'Esportivo Azul Veloz', imageUrl: './assets/esportivo_azul.jpg', price: 75000.00, description: 'Um carro esportivo elegante e potente para quem busca adrenalina.' },
-      { name: 'Sedan Confortável Prata', imageUrl: './assets/sedan_prata.jpg', price: 48000.50, description: 'Ideal para a família, oferece conforto e segurança em cada viagem.' },
-      { name: 'SUV Aventura Cinza', imageUrl: './assets/suv_cinza.jpg', price: 62500.99, description: 'Pronto para qualquer aventura, com espaço e robustez para o seu dia a dia.' },
-      { name: 'Hatch Compacto Vermelho', imageUrl: './assets/hatch_vermelho.jpg', price: 35200.00, description: 'Ágil e econômico, perfeito para a cidade.' },
-      { name: 'Picape Robusta Preta', imageUrl: './assets/picape_preta.jpg', price: 88900.00, description: 'Força e capacidade para o trabalho e lazer.' },
-      { name: 'Elétrico Sustentável Branco', imageUrl: './assets/eletrico_branco.jpg', price: 92100.75, description: 'O futuro da mobilidade, com zero emissão e alta tecnologia.' },
+      { id: 1, name: 'Esportivo Azul Veloz', imageUrl: 'pexels-wavyvisuals-377312923-19938881.jpg', price: 75000.00, description: '...' },
+      { id: 2, name: 'Sedan Confortável Prata', imageUrl: '...', price: 48000.50, description: '...' },
+      { id: 3, name: 'SUV Aventura Cinza', imageUrl: '...', price: 62500.99, description: '...' },
+      { id: 4, name: 'Hatch Compacto Vermelho', imageUrl: '...', price: 35200.00, description: '...' },
+      { id: 5, name: 'Picape Robusta Preta', imageUrl: '...', price: 88900.00, description: '...' },
+      { id: 6, name: 'Elétrico Sustentável Branco', imageUrl: '...', price: 92100.75, description: '...' },
     ];
     this.carro = carros.find(car => car.name.toLowerCase().replace(/ /g, '-') === this.nomeCarro);
+    if (this.carro) {
+      this.isFavoritado = this.favoritosService.isFavoritado(this.carro);
+    }
   }
 
-  // Método para adicionar o carro ao carrinho USANDO o CarrinhoService
   adicionarAoCarrinhoNoService(car: Car) {
     this.carrinhoServie.adicionarAoCarrinho(car);
     this.snackBar.open(`${car.name} adicionado ao carrinho!`, 'Fechar', {
       duration: 2000,
     });
+  }
+
+  toggleFavorito() {
+    if (this.carro) {
+      if (this.isFavoritado) {
+        this.favoritosService.removerFavorito(this.carro);
+        this.isFavoritado = false;
+      } else {
+        this.favoritosService.adicionarFavorito(this.carro);
+        this.isFavoritado = true;
+      }
+    }
   }
 }

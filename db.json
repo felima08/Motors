@@ -4,7 +4,14 @@
       "id": "1",
       "name": "Felipe Gonçalves Santos Lima",
       "email": "felipe08gg@gmail.com",
-      "password": "Felipe08"
+      "password": "Felipe08",
+      "telefone": "11990155753",
+      "receberNotificacoes": false,
+      "endereco": "Rua Ernesto Antônio Moraes 8",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "cep": "04913-044",
+      "cpf": "523.114.848-26"
     },
     {
       "id": "2",
@@ -21,7 +28,9 @@
       "imageUrl": "/assets/images/esportivo_azul.jpg",
       "price": 75000,
       "description": "Um carro esportivo elegante e potente para quem busca adrenalina.",
-      "destaque": true
+      "destaque": true,
+      "estoque": 3,
+      "vendido": false
     },
     {
       "id": "2",
@@ -29,7 +38,9 @@
       "imageUrl": "/assets/images/sedan_vermelho.jpg",
       "price": 48000.5,
       "description": "Ideal para a família, oferece conforto e segurança em cada viagem.",
-      "destaque": false
+      "destaque": false,
+      "estoque": 3,
+      "vendido": false
     },
     {
       "id": "3",
@@ -37,7 +48,9 @@
       "imageUrl": "/assets/images/suv_cinza.jpg",
       "price": 62500.99,
       "description": "Pronto para qualquer aventura, com espaço e robustez para o seu dia a dia.",
-      "destaque": true
+      "destaque": true,
+      "estoque": 3,
+      "vendido": false
     },
     {
       "id": "4",
@@ -45,7 +58,9 @@
       "imageUrl": "/assets/images/hatch_vermelho.jpg",
       "price": 35200,
       "description": "Ágil e econômico, perfeito para a cidade.",
-      "destaque": false
+      "destaque": false,
+      "estoque": 3,
+      "vendido": false
     },
     {
       "id": "5",
@@ -53,7 +68,9 @@
       "imageUrl": "/assets/images/picape_preta.jpg",
       "price": 88900,
       "description": "Força e capacidade para o trabalho e lazer.",
-      "destaque": false
+      "destaque": false,
+      "estoque": 3,
+      "vendido": false
     },
     {
       "id": "6",
@@ -61,10 +78,26 @@
       "imageUrl": "/assets/images/eletrico_branco.jpg",
       "price": 92100.75,
       "description": "O futuro da mobilidade, com zero emissão e alta tecnologia.",
-      "destaque": true
+      "destaque": true,
+      "estoque": 3,
+      "vendido": false
     }
   ],
   "compras": [
-  
+    {
+      "id": "b018",
+      "itensComprados": [
+        {
+          "name": "SUV Aventura Cinza",
+          "price": 62500.99
+        },
+        {
+          "name": "SUV Aventura Cinza",
+          "price": 62500.99
+        }
+      ],
+      "total": 125001.98,
+      "dataCompra": "2025-04-17T16:04:51.917Z"
+    }
   ]
 }

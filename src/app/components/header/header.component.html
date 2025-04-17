@@ -1,1 +1,17 @@
-
+<div class="header">
+    <div class="logo-container">
+      <h1 class="logo">
+        <mat-icon class="logo-icon">directions_car</mat-icon> FG Premium Motors
+      </h1>
+    </div>
+  
+    <nav class="nav-menu">
+      <a class="nav-link active" routerLink="/home">Inicio</a>
+      <a class="nav-link" routerLink="/perfil">Perfil</a>
+      <a class="nav-link" href="https://wa.me/SEUNUMERODOTELEFONE" target="_blank">Contato</a>
+      <a class="nav-red" (click)="logout()">Sair</a>
+      <a class="nav-link cart-link" routerLink="/carrinho">
+        <mat-icon>shopping_cart</mat-icon> Carrinho ({{ carrinhoService.getCarrinho().length }})
+      </a>
+    </nav>
+  </div>

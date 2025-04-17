@@ -1,21 +1,24 @@
 import { Routes } from '@angular/router';
 import { MeuFormularioComponent } from './meu-formulario/meu-formulario.component';
 import { HomeComponent } from './components/home/home.component';
-import { CarrinhoComponent } from './components/carrinho/carrinho.component'; // Importe o CarrinhoComponent
-import { PerfilComponent } from './components/perfil/perfil.component'; // Importe o PerfilComponent
+import { CarrinhoComponent } from './components/carrinho/carrinho.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { DetalhesComponent } from './components/detalhes/detalhes.component';
+import { CheckoutEntregaComponent } from './components/checkout-entrega/checkout-entrega.component'; // Importe o CheckoutEntregaComponent
 
 export const routes: Routes = [
   {
     path: '',
-    component: MeuFormularioComponent // Tela de boas-vindas na raiz
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   {
     path: 'home',
-    component: HomeComponent,
+    component: HomeComponent
   },
   {
     path: 'perfil',
-    component: PerfilComponent // Adicione esta rota para o PerfilComponent
+    component: PerfilComponent
   },
   {
     path: 'cadastro',
@@ -29,10 +32,18 @@ export const routes: Routes = [
   },
   {
     path: 'carrinho',
-    component: CarrinhoComponent // Adicione a rota para o CarrinhoComponent
+    component: CarrinhoComponent
+  },
+  {
+    path: 'detalhes/:nome',
+    component: DetalhesComponent
+  },
+  {
+    path: 'checkout/entrega',
+    component: CheckoutEntregaComponent // Adicione a rota para o CheckoutEntregaComponent
   },
   {
     path: '**',
-    redirectTo: '' // Rotas desconhecidas vão para a tela de boas-vindas
+    redirectTo: 'home'
   }
 ];

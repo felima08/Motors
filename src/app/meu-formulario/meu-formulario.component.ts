@@ -12,11 +12,19 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  password?: string;
+export interface User {
+  id?: number;
+  name?: string;
+  email?: string;
+  telefone?: string;
+  fotoPerfilUrl?: string;
+  receberNotificacoes?: boolean;
+  cpf?: string;
+  endereco?: string;
+  cidade?: string;
+  estado?: string;
+  cep?: string;
+  // ... outras propriedades
 }
 
 @Component({
@@ -34,210 +42,8 @@ interface User {
     MatDividerModule,
     MatSnackBarModule,
   ],
-  template: `
-    <div class="full-screen-container">
-      <div class="form-container">
-        <div *ngIf="currentView === 'welcome'" class="welcome-panel">
-          <h2>Bem-vindo!</h2>
-          <p class="welcome-text">Escolha entre <span class="highlight">login</span> e <span class="highlight">cadastro</span> para acessar nossa plataforma.</p>
-          <button mat-raised-button color="primary" class="welcome-button" (click)="showLogin()">Login</button>
-          <button mat-raised-button color="accent" class="welcome-button" (click)="showRegister()">Cadastrar</button>
-        </div>
-
-        <div *ngIf="currentView === 'login'" class="form-panel">
-          <div class="panel-content">
-            <h2 class="form-title">Entrar</h2>
-            <p class="welcome-text">Mantenha-se conectado! Insira suas informações de login para acessar sua conta.</p>
-
-            <form class="login-form" (ngSubmit)="onLoginWithApi()">
-              <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="loginData.email" name="loginEmail" required>
-                <mat-icon matSuffix>email</mat-icon>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Senha</mat-label>
-                <input matInput [type]="hideLoginPassword ? 'password' : 'text'"
-                       [(ngModel)]="loginData.senha" name="loginSenha" required>
-                <button mat-icon-button matSuffix (click)="hideLoginPassword = !hideLoginPassword" type="button">
-                  <mat-icon>{{hideLoginPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-              </mat-form-field>
-
-              <mat-checkbox class="remember-me" [(ngModel)]="loginData.lembrarMe" name="loginLembrarMe">
-                Lembrar-me
-              </mat-checkbox>
-
-              <button mat-raised-button color="primary" type="submit" class="submit-button" [disabled]="!loginIsValid()">
-                Entrar
-              </button>
-            </form>
-
-            <button mat-button class="switch-button" (click)="showRegister()">Ainda não tem uma conta? <span class="underline">Cadastre-se</span></button>
-          </div>
-        </div>
-
-        <div *ngIf="currentView === 'register'" class="form-panel">
-          <div class="panel-content">
-            <h2 class="form-title">Criar Conta</h2>
-            <p class="welcome-text">Comece sua jornada conosco! Preencha o formulário para criar sua nova conta.</p>
-
-            <form class="register-form" (ngSubmit)="onSubmitWithApi()">
-              <mat-form-field appearance="outline">
-                <mat-label>Nome</mat-label>
-                <input matInput [(ngModel)]="formData.nome" name="nome" required>
-                <mat-icon matSuffix>person</mat-icon>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput [formControl]="emailFormControl" name="email" required>
-                <mat-icon matSuffix>email</mat-icon>
-                <mat-error *ngIf="emailFormControl.hasError('email')">Por favor, insira um email válido</mat-error>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Senha</mat-label>
-                <input matInput [type]="hidePassword ? 'password' : 'text'"
-                       [(ngModel)]="formData.senha" name="senha" required>
-                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
-                  <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-              </mat-form-field>
-
-              <button mat-raised-button color="accent" type="submit" class="submit-button" [disabled]="!formIsValid()">
-                Criar Conta
-              </button>
-            </form>
-
-            <button mat-button class="switch-button" (click)="showLogin()">Já tem uma conta? <span class="underline">Faça login</span></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `,
-  styles: [`
-   .full-screen-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; /* Força a altura para 100% da viewport */
-     
-      background-image: url('/pexels-lynxexotics-3802510.jpg'); /* Caminho da imagem */
-      background-size: cover; /* Tenta cobrir todo o espaço */
-      background-position: center;
-      background-repeat: no-repeat;
-      
-    }
-
-    .form-container {
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      padding: 30px;
-      width: 400px;
-      text-align: center;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-
-    .form-panel {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .panel-content {
-      width: 100%;
-    }
-
-    .form-title {
-      color: #1976d2;
-      margin-bottom: 20px;
-      font-size: 2em;
-    }
-
-    mat-form-field {
-      width: 100%;
-      margin-bottom: 15px;
-    }
-
-    .remember-me {
-      margin-bottom: 15px;
-      display: block;
-      text-align: left;
-    }
-
-    .submit-button {
-      width: 100%;
-      padding: 12px;
-      font-size: 1em;
-      background-color: #1976d2;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .submit-button:hover {
-      background-color: #115293;
-    }
-
-    .switch-button {
-      background: none;
-      border: none;
-      color: #555;
-      cursor: pointer;
-      margin-top: 10px;
-      text-decoration: none;
-      font-size: 0.9em;
-    }
-
-    .switch-button .underline {
-      text-decoration: underline;
-      font-weight: bold;
-      color: #1976d2;
-    }
-
-    /* Estilos para a tela de boas-vindas (mantendo centralizado) */
-    .welcome-panel {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #333;
-    }
-
-    .welcome-panel h2 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      color: #1976d2;
-    }
-
-    .welcome-text {
-      font-size: 1.1em;
-      line-height: 1.8;
-      margin-bottom: 30px;
-      padding: 0 20px;
-    }
-
-    .highlight {
-      color: #2196f3;
-      font-weight: bold;
-    }
-
-    .welcome-button {
-      margin: 10px;
-      padding: 12px 25px;
-      font-size: 1em;
-      border-radius: 5px;
-    }
-  `]
+  templateUrl: './meu-formulario.component.html',
+  styleUrls: ['./meu-formulario.component.css']
 })
 
 
