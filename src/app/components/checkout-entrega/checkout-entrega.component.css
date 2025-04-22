@@ -30,3 +30,44 @@
   .actions button:last-child {
     margin-right: 0;
   }
+
+  .checkout-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-form-field {
+    margin-bottom: 15px;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+
+.importante {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.success-icon {
+    font-size: 48px;
+    color: green;
+    margin-bottom: 10px;
+}

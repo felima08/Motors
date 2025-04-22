@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-interface Car {
+export interface Car {
+  id: string;
   name: string;
   imageUrl: string;
   price: number;
   description: string;
+  destaque?: boolean;
+  vendido?: boolean;
+  estoque?: number;
 }
 
 @Injectable({

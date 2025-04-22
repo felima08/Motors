@@ -1,0 +1,41 @@
+.car-card {
+    max-width: 350px;
+  }
+  
+  .car-card img {
+    height: 200px;
+    object-fit: cover;
+    transition: box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
+  }
+  
+  .car-card:hover img {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+  }
+  
+  .car-description {
+    font-size: 0.9em;
+    color: #555;
+  }
+  
+  .mat-card-actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .car-card.sold-out {
+    opacity: 0.7; /* Diminui a opacidade para indicar que está vendido */
+    cursor: not-allowed; /* Muda o cursor para indicar não interatividade */
+  }
+  
+  .sold-out-text {
+    color: red;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+  
+  .stock-info {
+    color: green;
+    font-size: 0.9em;
+    margin-top: 8px;
+  }

@@ -1,0 +1,26 @@
+
+<mat-card class="car-card" [class.sold-out]="car.vendido" style="cursor: pointer;">
+    <img mat-card-image [src]="car.imageUrl" alt="{{ car.name }}">
+    <mat-card-header>
+      <mat-card-title>{{ car.name }}</mat-card-title>
+      <mat-card-subtitle>R$ {{ car.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="car-description">{{ car.description }}</p>
+      <p *ngIf="!car.vendido" class="stock-info">Estoque: {{ car.estoque }} unidades</p>
+      <p *ngIf="car.vendido" class="sold-out-text">Vendido!</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onAddToCart(car)"
+        [disabled]="car.vendido || car.estoque === 0"
+      >
+        <mat-icon>add_shopping_cart</mat-icon> Adicionar ao Carrinho
+      </button>
+      <button mat-button color="accent" (click)="onViewDetails(car)">
+        <mat-icon>info</mat-icon> Detalhes
+      </button>
+    </mat-card-actions>
+  </mat-card>
