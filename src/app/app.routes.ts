@@ -4,46 +4,56 @@ import { HomeComponent } from './components/home/home.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { DetalhesComponent } from './components/detalhes/detalhes.component';
-import { CheckoutEntregaComponent } from './components/checkout-entrega/checkout-entrega.component'; // Importe o CheckoutEntregaComponent
+import { CheckoutEntregaComponent } from './components/checkout-entrega/checkout-entrega.component';
+import { authGuard } from './auth.guard';
+import { inject } from '@angular/core'; // Importe 'inject' aqui
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'perfil',
-    component: PerfilComponent
-  },
-  {
-    path: 'cadastro',
-    component: MeuFormularioComponent,
-    data: { isRegister: true }
-  },
-  {
-    path: 'login',
-    component: MeuFormularioComponent,
-    data: { isRegister: false }
-  },
-  {
-    path: 'carrinho',
-    component: CarrinhoComponent
-  },
-  {
-    path: 'detalhes/:nome',
-    component: DetalhesComponent
-  },
-  {
-    path: 'checkout/entrega',
-    component: CheckoutEntregaComponent // Adicione a rota para o CheckoutEntregaComponent
-  },
-  {
-    path: '**',
-    redirectTo: 'home'
-  }
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
+    {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'perfil',
+        component: PerfilComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'cadastro',
+        component: MeuFormularioComponent,
+        data: { isRegister: true },
+        
+    },
+    {
+        path: 'login',
+        component: MeuFormularioComponent,
+        data: { isRegister: false },
+       
+    },
+    {
+        path: 'carrinho',
+        component: CarrinhoComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'detalhes/:nome',
+        component: DetalhesComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'checkout/entrega',
+        component: CheckoutEntregaComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: '**',
+        redirectTo: 'home'
+    }
 ];
+

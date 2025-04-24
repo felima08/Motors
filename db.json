@@ -6,7 +6,7 @@
       "email": "felipe08gg@gmail.com",
       "password": "Felipe08",
       "telefone": "11990155753",
-      "receberNotificacoes": false,
+      "receberNotificacoes": true,
       "endereco": "Rua Ernesto Antônio Moraes 8",
       "cidade": "São Paulo",
       "estado": "SP",
@@ -40,7 +40,7 @@
       "description": "Ideal para a família, oferece conforto e segurança em cada viagem.",
       "destaque": false,
       "estoque": 3,
-      "vendido": false
+      "vendido": true
     },
     {
       "id": "3",
@@ -85,19 +85,43 @@
   ],
   "compras": [
     {
-      "id": "b018",
+      "id": "compra_1745436126487",
       "itensComprados": [
-        {
-          "name": "SUV Aventura Cinza",
-          "price": 62500.99
-        },
-        {
-          "name": "SUV Aventura Cinza",
-          "price": 62500.99
-        }
+        "2"
       ],
-      "total": 125001.98,
-      "dataCompra": "2025-04-17T16:04:51.917Z"
+      "total": 48000.5,
+      "dataCompra": "2025-04-23T19:22:06.487Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "PAC"
+      }
+    },
+    {
+      "id": "compra_1745516398846",
+      "itensComprados": [
+        "10",
+        "10"
+      ],
+      "total": 220000,
+      "dataCompra": "2025-04-24T17:39:58.847Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "Sedex"
+      }
+    }
+  ],
+  "passwordResetRequests": [
+    {
+      "id": "4a1b",
+      "email": "felps112233@gmail.com"
     }
   ]
 }

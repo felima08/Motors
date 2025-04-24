@@ -1,26 +1,21 @@
-
-<mat-card class="car-card" [class.sold-out]="car.vendido" style="cursor: pointer;">
-    <img mat-card-image [src]="car.imageUrl" alt="{{ car.name }}">
+<mat-card class="car-card">
     <mat-card-header>
       <mat-card-title>{{ car.name }}</mat-card-title>
-      <mat-card-subtitle>R$ {{ car.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</mat-card-subtitle>
     </mat-card-header>
+    <img mat-card-image [src]="car.imageUrl" alt="{{ car.name }}">
     <mat-card-content>
-      <p class="car-description">{{ car.description }}</p>
-      <p *ngIf="!car.vendido" class="stock-info">Estoque: {{ car.estoque }} unidades</p>
-      <p *ngIf="car.vendido" class="sold-out-text">Vendido!</p>
+      <p>{{ car.description }}</p>
+      <p>Preço: {{ car.price | currency:'BRL' }}</p>
+      <p>Estoque: {{ (estoque$ | async)?.[car.id] !== undefined ? (estoque$ | async)?.[car.id] : 'Carregando...' }}</p>
+      <p *ngIf="(estoque$ | async)?.[car.id] === 0">Vendido</p>
     </mat-card-content>
     <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="onAddToCart(car)"
-        [disabled]="car.vendido || car.estoque === 0"
-      >
-        <mat-icon>add_shopping_cart</mat-icon> Adicionar ao Carrinho
+      <button mat-raised-button color="primary" (click)="onAddToCart(car)"
+        [disabled]="(estoque$ | async)?.[car.id] === 0">
+        <mat-icon>add_shopping_cart</mat-icon> Adicionar
       </button>
       <button mat-button color="accent" (click)="onViewDetails(car)">
-        <mat-icon>info</mat-icon> Detalhes
+        <mat-icon>inf</mat-icon> Detalhes
       </button>
     </mat-card-actions>
   </mat-card>

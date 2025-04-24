@@ -1,119 +1,234 @@
 .full-screen-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Força a altura para 100% da viewport */
-  
-    background-image: url('/pexels-lynxexotics-3802510.jpg'); /* Caminho da imagem */
-    background-size: cover; /* Tenta cobrir todo o espaço */
-    background-position: center;
-    background-repeat: no-repeat;
-  
-  }
-  
-  .form-container {
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    width: 400px;
-    text-align: center;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-  
-  
-  .form-panel {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .panel-content {
-    width: 100%;
-  }
-  
-  .form-title {
-    color: #1976d2;
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  
-  .remember-me {
-    margin-bottom: 15px;
-    display: block;
-    text-align: left;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 1em;
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit-button:hover {
-    background-color: #115293;
-  }
-  
-  .switch-button {
-    background: none;
-    border: none;
-    color: #555;
-    cursor: pointer;
-    margin-top: 10px;
-    text-decoration: none;
-    font-size: 0.9em;
-  }
-  
-  .switch-button .underline {
-    text-decoration: underline;
-    font-weight: bold;
-    color: #1976d2;
-  }
-  
-  /* Estilos para a tela de boas-vindas (mantendo centralizado) */
-  .welcome-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #333;
-  }
-  
-  .welcome-panel h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #1976d2;
-  }
-  
-  .welcome-text {
-    font-size: 1.1em;
-    line-height: 1.8;
-    margin-bottom: 30px;
-    padding: 0 20px;
-  }
-  
-  .highlight {
-    color: #2196f3;
-    font-weight: bold;
-  }
-  
-  .welcome-button {
-    margin: 10px;
-    padding: 12px 25px;
-    font-size: 1em;
-    border-radius: 5px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('/2372.jpg'); /* **VERIFIQUE O CAMINHO DA IMAGEM PRINCIPAL!** */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.split-container {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  width: 80%;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+.company-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3f51b5 100%);
+}
+
+.company-logo-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.company-logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.company-info h2 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.company-info .slogan {
+  font-size: 1.3em;
+  color: #eee;
+  line-height: 1.6;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.form-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+  /* **ADICIONANDO IMAGEM DE FUNDO NO CARD** */
+  background-image: url('/assets/background-form.jpg'); /* **CAMINHO DA IMAGEM DO CARD!** */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 550px;
+}
+
+.form-container {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  max-height: none;
+  overflow-y: visible;
+  background-color: rgba(255, 255, 255, 0.8); /* Adiciona um fundo semi-transparente sobre a imagem */
+  border-radius: 8px; /* Opcional: bordas arredondadas para o fundo do formulário */
+  padding: 30px; /* Opcional: um pouco de padding para o conteúdo do formulário */
+}
+
+.form-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.panel-content {
+  width: 100%;
+   text-align: center;
+}
+
+.form-title {
+  color: #283593;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  font-weight: 500;
+}
+
+.welcome-text {
+  font-size: 1.1em;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.remember-me {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #555;
+}
+
+.remember-me mat-checkbox {
+  margin-right: 8px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1em;
+  background-color: #283593;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:hover {
+  background-color: #1a237e;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.switch-button {
+  background: none;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  margin-top: 20px;
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.switch-button:hover {
+  color: #283593;
+}
+
+.switch-button .underline {
+  text-decoration: underline;
+  font-weight: bold;
+  color: #283593;
+}
+
+/* Estilos para a tela de boas-vindas */
+.welcome-panel {
+  display: flex; /* Habilita o Flexbox */
+  flex-direction: column; /* Organiza os itens em coluna */
+  align-items: center; /* Centraliza os itens horizontalmente */
+  justify-content: center; /* Centraliza os itens verticalmente (opcional, dependendo da altura do painel) */
+  text-align: center; /* Centraliza o texto dentro dos elementos */
+  color: #444;
+}
+
+.welcome-panel h2 {
+  font-size: 3em;
+  margin-bottom: 30px;
+  color: #283593;
+  font-weight: 600;
+}
+
+.welcome-text {
+  font-size: 1.2em;
+  line-height: 1.8;
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 40px;
+}
+
+.highlight {
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+.welcome-button {
+  margin: 15px;
+  padding: 14px 30px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-button.mat-raised-button.mat-primary {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.welcome-button.mat-raised-button.mat-accent {
+  background-color: #ff4081;
+  color: white;
+}
+
+.welcome-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-button.mat-raised-button.mat-primary:hover {
+  background-color: #303f9f;
+}
+
+.welcome-button.mat-raised-button.mat-accent:hover {
+  background-color: #d81b60;
+}

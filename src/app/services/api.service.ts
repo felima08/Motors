@@ -50,4 +50,17 @@ export class ApiService {
   salvarCompra(detalhesCompra: any): Observable<any> {
     return this.post('compras', detalhesCompra);
   }
+
+  // Métodos para redefinição de senha (adicionados posteriormente)
+  requestPasswordReset(email: string): Observable<any> {
+    return this.post('passwordResetRequests', { email });
+  }
+
+  verifyPasswordResetToken(token: string): Observable<any> {
+    return this.get(`passwordResetTokens?token=${token}`);
+  }
+
+  resetPassword(token: string, newPassword: string): Observable<any> {
+    return this.patch(`passwordResetTokens/${token}`, { newPassword });
+  }
 }

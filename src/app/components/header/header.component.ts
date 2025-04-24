@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, HostListener, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, Router } from '@angular/router';
-import { CarrinhoService } from '../carrinho/carrinho.service';// Importe seu carrinho service
+import { CarrinhoService } from '../carrinho/carrinho.service';
 
 @Component({
   selector: 'app-header',
@@ -11,14 +11,27 @@ import { CarrinhoService } from '../carrinho/carrinho.service';// Importe seu ca
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
   carrinhoService = inject(CarrinhoService);
   router = inject(Router);
+  @ViewChild('headerDiv') headerDiv!: ElementRef;
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: Event) {
+    if (window.scrollY > 50) { // Ajuste esse valor conforme necessário
+      this.headerDiv.nativeElement.classList.add('scrolled');
+    } else {
+      this.headerDiv.nativeElement.classList.remove('scrolled');
+    }
+  }
 
   logout() {
-    // Lógica de logout (limpar token, carrinho, etc.)
     localStorage.removeItem('auth_token');
     localStorage.removeItem('loggedInUser');
-    this.router.navigate(['/login']); // Redirecione para a página de login
+    this.router.navigate(['/login']);
+  }
+
+  ngAfterViewInit() {
+    // Garante que a referência ao elemento esteja disponível
   }
 }

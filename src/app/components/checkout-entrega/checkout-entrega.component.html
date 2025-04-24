@@ -5,7 +5,7 @@
 
     <div *ngIf="etapaAtual === 1">
         <h2>Informações de Entrega</h2>
-        <form [formGroup]="entregaForm" class="checkout-form">
+        <form [formGroup]="entregaForm" class="checkout-form" (ngSubmit)="avancarEtapa()">
             <mat-form-field appearance="outline">
                 <mat-label for="endereco">Endereço</mat-label>
                 <input matInput id="endereco" formControlName="endereco" required>
@@ -37,15 +37,15 @@
             </mat-form-field>
 
             <div class="actions">
-                <button mat-button (click)="voltarParaCarrinho()"><mat-icon>chevron_left</mat-icon> Voltar para o Carrinho</button>
-                <button mat-raised-button color="primary" (click)="avancarEtapa()" [disabled]="entregaForm.invalid">Prosseguir para Pagamento <mat-icon>chevron_right</mat-icon></button>
+                <button mat-button type="button" (click)="voltarParaCarrinho()"><mat-icon>chevron_left</mat-icon> Voltar para o Carrinho</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="entregaForm.invalid">Prosseguir para Pagamento <mat-icon>chevron_right</mat-icon></button>
             </div>
         </form>
     </div>
 
     <div *ngIf="etapaAtual === 2">
         <h2>Informações de Pagamento</h2>
-        <form [formGroup]="pagamentoForm" class="checkout-form">
+        <form [formGroup]="pagamentoForm" class="checkout-form" (ngSubmit)="avancarEtapa()">
             <mat-form-field appearance="outline">
                 <mat-label for="metodoPagamentoSelect">Método de Pagamento</mat-label>
                 <mat-select id="metodoPagamentoSelect" formControlName="metodoPagamento" required>
@@ -109,8 +109,8 @@
             </ng-container>
 
             <div class="actions">
-                <button mat-button (click)="voltarEtapa()"><mat-icon>chevron_left</mat-icon> Voltar para Entrega</button>
-                <button mat-raised-button color="primary" (click)="avancarEtapa()" [disabled]="pagamentoForm.invalid">Prosseguir <mat-icon>chevron_right</mat-icon></button>
+                <button mat-button type="button" (click)="voltarEtapa()"><mat-icon>chevron_left</mat-icon> Voltar para Entrega</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="pagamentoForm.invalid">Prosseguir <mat-icon>chevron_right</mat-icon></button>
             </div>
         </form>
     </div>
@@ -122,12 +122,12 @@
         <div class="codigo-pix-simulado">
             <strong>Código Pix:</strong>
             <p>{{ codigoPixSimulado }}</p>
-            <button mat-button color="accent" (click)="copiarParaAreaTransferencia(codigoPixSimulado)">Copiar Código Pix</button>
+            <button mat-button color="accent" type="button" (click)="copiarParaAreaTransferencia(codigoPixSimulado)">Copiar Código Pix</button>
         </div>
         <p class="importante">Esta é uma simulação. Nenhum pagamento real será processado.</p>
         <div class="actions">
-            <button mat-button (click)="voltarEtapa()"><mat-icon>chevron_left</mat-icon> Voltar para Pagamento</button>
-            <button mat-raised-button color="primary" (click)="avancarEtapa()">Confirmar Pagamento (Simulado) <mat-icon>check</mat-icon></button>
+            <button mat-button type="button" (click)="voltarEtapa()"><mat-icon>chevron_left</mat-icon> Voltar para Pagamento</button>
+            <button mat-raised-button color="primary" type="button" (click)="finalizarPedido()">Confirmar Pagamento (Simulado) <mat-icon>check</mat-icon></button>
         </div>
     </div>
 
@@ -163,8 +163,8 @@
             </mat-list-item>
         </mat-list>
         <div class="actions">
-            <button mat-button (click)="voltarEtapa()"><mat-icon>chevron_left</mat-icon> Voltar para Pagamento</button>
-            <button mat-raised-button color="accent" (click)="finalizarPedido()">Finalizar Pedido <mat-icon>check</mat-icon></button>
+            <button mat-button type="button" (click)="voltarEtapa()"><mat-icon>chevron_left</mat-icon> Voltar para Pagamento</button>
+            <button mat-raised-button color="accent" type="button" (click)="finalizarPedido()">Finalizar Pedido <mat-icon>check</mat-icon></button>
         </div>
     </div>
 

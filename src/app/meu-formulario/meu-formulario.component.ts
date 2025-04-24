@@ -1,7 +1,7 @@
+// meu-formulario.component.ts
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,21 +11,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
-
-export interface User {
-  id?: number;
-  name?: string;
-  email?: string;
-  telefone?: string;
-  fotoPerfilUrl?: string;
-  receberNotificacoes?: boolean;
-  cpf?: string;
-  endereco?: string;
-  cidade?: string;
-  estado?: string;
-  cep?: string;
-  // ... outras propriedades
-}
 
 @Component({
   selector: 'app-meu-formulario',
@@ -45,17 +30,16 @@ export interface User {
   templateUrl: './meu-formulario.component.html',
   styleUrls: ['./meu-formulario.component.css']
 })
-
-
 export class MeuFormularioComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  forgotPasswordEmailControl = new FormControl('', [Validators.required, Validators.email]); // Adicionado
   formData: any = {};
   loginData: any = {};
   showFormulario = true;
   hidePassword = true;
   hideLoginPassword = true;
 
-  currentView: 'welcome' | 'login' | 'register' = 'welcome';
+  currentView: 'welcome' | 'login' | 'register' | 'forgotPassword' = 'welcome';
 
   private apiService = inject(ApiService);
   private snackBar = inject(MatSnackBar);
@@ -66,7 +50,6 @@ export class MeuFormularioComponent {
     this.router.events.subscribe(() => {
       this.showFormulario = !this.router.url.includes('/home');
     });
-    // Remova a lógica baseada em route.url do constructor
   }
 
   showLogin() {
@@ -79,6 +62,34 @@ export class MeuFormularioComponent {
 
   showWelcome() {
     this.currentView = 'welcome';
+  }
+
+  showForgotPassword() {
+    this.currentView = 'forgotPassword';
+  }
+
+  async onForgotPassword() {
+    if (this.forgotPasswordEmailControl.valid && this.forgotPasswordEmailControl.value) { // Verificação adicional de valor não nulo
+      try {
+        const response = await this.apiService.requestPasswordReset(this.forgotPasswordEmailControl.value).toPromise();
+        this.snackBar.open('Um link de redefinição de senha foi enviado para o seu e-mail (simulação).', 'Fechar', {
+          duration: 5000,
+          panelClass: ['success-snackbar']
+        });
+        this.currentView = 'login'; // Voltar para o login após a solicitação (simulação)
+      } catch (error) {
+        console.error('Erro ao solicitar redefinição de senha:', error);
+        this.snackBar.open('Ocorreu um erro ao solicitar a redefinição de senha.', 'Fechar', {
+          duration: 5000,
+          panelClass: ['error-snackbar']
+        });
+      }
+    } else {
+      this.snackBar.open('Por favor, insira um e-mail válido.', 'Fechar', {
+        duration: 3000,
+        panelClass: ['error-snackbar']
+      });
+    }
   }
 
   async onSubmitWithApi() {

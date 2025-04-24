@@ -8,7 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { Subscription } from 'rxjs';
 import { HeaderComponent } from "../header/header.component";
-import { MatSnackBar } from '@angular/material/snack-bar'; // Remova se não usar aqui
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FooterComponent } from "../footer/footer.component"; // Remova se não usar aqui
 
 interface CarroCarrinho {
   car: any;
@@ -24,8 +25,9 @@ interface CarroCarrinho {
     RouterLink,
     MatCardModule,
     MatDividerModule,
-    HeaderComponent
-  ],
+    HeaderComponent,
+    FooterComponent
+],
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css']
 })

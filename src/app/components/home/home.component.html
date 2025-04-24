@@ -1,83 +1,60 @@
 <app-header></app-header>
 
 <div class="main-content">
-    <div class="search-bar-below-header">
-        <mat-form-field appearance="outline">
-            <mat-label>Buscar Modelos</mat-label>
-            <input matInput type="text" [(ngModel)]="searchTerm" (input)="buscarProdutos()">
-            <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-    </div>
+  <h2 class="section-title">Nossos Modelos em Destaque</h2>
+  <mat-grid-list cols="3" rowHeight="1:1" gutterSize="20px">
+    <mat-grid-tile *ngFor="let car of cars">
+      <app-car-card
+        [car]="car"
+        (addToCart)="adicionarAoCarrinho($event)"
+        (viewDetails)="viewDetails($event)"
+        [estoque$]="estoque$"
+      ></app-car-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 
-    <h2 class="section-title" *ngIf="!searchTerm || searchResults.length === 0">Nossos Modelos em Destaque</h2>
-    <h2 class="section-title" *ngIf="searchTerm && searchResults.length > 0">Resultados da Busca</h2>
-
-    <mat-grid-list cols="3" rowHeight="1:1" gutterSize="20px">
-        <mat-grid-tile *ngFor="let car of (searchTerm ? searchResults : cars)">
-            <app-car-card
-                [car]="car"
-                (addToCart)="adicionarAoCarrinho($event)"
-                (viewDetails)="viewDetails($event)"
-                [estoque]="getEstoqueDoCarro(car.id!)"
-                [vendido]="car.vendido"
-            ></app-car-card>
-        </mat-grid-tile>
-        <mat-grid-tile *ngIf="searchTerm && searchResults.length === 0 && !carsDestaque.length">
-            <mat-card class="no-results">
-                <mat-card-content>
-                    Nenhum modelo em destaque no momento.
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile *ngIf="searchTerm && searchResults.length === 0 && carsDestaque.length > 0">
-            <mat-card class="no-results">
-                <mat-card-content>
-                    Nenhum modelo encontrado para "{{ searchTerm }}".
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
-
-    <div *ngIf="purchaseMessage" class="purchase-message">
-        {{ purchaseMessage }}
-    </div>
+  <div *ngIf="purchaseMessage" class="purchase-message">
+    {{ purchaseMessage }}
+  </div>
 </div>
 
 <div class="chat-widget">
-    <button class="chat-button" (click)="toggleChat()">
-        <mat-icon>chat</mat-icon> Fale Conosco
-        <span class="unread-count" *ngIf="chatUnreadMessages > 0">{{chatUnreadMessages}}</span>
-    </button>
-    <div class="chat-container" [class.open]="isChatOpen">
-        <div class="chat-header">
-            <mat-icon>person</mat-icon> Atendimento ao Cliente
-            <button class="close-button" (click)="toggleChat()">
-                <mat-icon>close</mat-icon>
-            </button>
-        </div>
-        <div class="chat-body">
-            <div *ngFor="let msg of messages" class="message" [class.sent]="msg.isUser" [class.received]="!msg.isUser">
-                {{msg.text}}
-                <div class="message-time">{{msg.timestamp | date:'HH:mm'}}</div>
-            </div>
-            <div class="typing-indicator" *ngIf="isTyping">
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-            </div>
-        </div>
-        <div class="chat-footer">
-            <mat-form-field class="message-input">
-                <textarea matInput [(ngModel)]="newMessage"
-                          (keydown.enter)="sendMessage()"
-                          placeholder="Digite sua mensagem..."></textarea>
-            </mat-form-field>
-            <button mat-icon-button color="primary"
-                    class="send-button"
-                    (click)="sendMessage()"
-                    [disabled]="!newMessage.trim()">
-                <mat-icon>send</mat-icon>
-            </button>
-        </div>
+  <button class="chat-button" (click)="toggleChat()">
+    <mat-icon>chat</mat-icon> Fale Conosco
+    <span class="unread-count" *ngIf="chatUnreadMessages > 0">{{chatUnreadMessages}}</span>
+  </button>
+  <div class="chat-container" [class.open]="isChatOpen">
+    <div class="chat-header">
+      <mat-icon>person</mat-icon> Atendimento ao Cliente
+      <button class="close-button" (click)="toggleChat()">
+        <mat-icon>close</mat-icon>
+      </button>
     </div>
+    <div class="chat-body">
+      <div *ngFor="let msg of messages" class="message" [class.sent]="msg.isUser" [class.received]="!msg.isUser">
+        {{msg.text}}
+        <div class="message-time">{{msg.timestamp | date:'HH:mm'}}</div>
+      </div>
+      <div class="typing-indicator" *ngIf="isTyping">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <mat-form-field class="message-input">
+        <textarea matInput [(ngModel)]="newMessage"
+                  (keydown.enter)="sendMessage()"
+                  placeholder="Digite sua mensagem..."></textarea>
+      </mat-form-field>
+      <button mat-icon-button color="primary"
+              class="send-button"
+              (click)="sendMessage()"
+              [disabled]="!newMessage.trim()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
 </div>
+
+<app-footer></app-footer>

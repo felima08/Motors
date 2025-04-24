@@ -1,0 +1,57 @@
+1 -Componentes de Layout: Explique a finalidade e forneça exemplos de pelo menos dois componentes de layout do Angular Material que usamos ou mencionamos (como mat-grid-list, mat-card). Como eles ajudam na estruturação da interface do usuário?
+
+2-Diretivas do Router: Discutimos o uso de routerLink em vez de href para navegação dentro da aplicação Angular. Qual é a principal diferença entre eles e por que routerLink é preferível para rotas internas em uma aplicação Angular que utiliza o Angular Router?
+
+3-Serviços e Observáveis: Vimos o uso de um EstoqueServicecom um BehaviorSubjecte um Observable( estoque$). Explique o papel de um serviço no Angular, a diferença entre BehaviorSubjecte Observable, e como os componentes (como HomeComponente CarCardComponent) utilizam o estoque$para exibir e reagir às mudanças no estoque.
+
+4-Tratamento de Eventos e Two-Way Binding: Embora não tenhamos nos aprofundado em formulários, mencionamos o uso de (click) para eventos e [(ngModel)] (implícito em FormsModule). Explique como o Angular Material (através de seus componentes) pode se integrar com o tratamento de eventos e o conceito de two-way binding para interatividade e manipulação de dados. Dê um exemplo conceitual usando um componente de input do Angular Material.
+
+5-Uso de Ícones: Implementamos a exibição de ícones SVG no FooterComponent utilizando MatIconRegistry. Descreva o processo para registrar e exibir ícones SVG personalizados no Angular Material. Por que usar DomSanitizer é importante nesse contexto?
+
+
+
+
+
+Respostas às Questões sobre Angular Material:
+Componentes de layout:
+
+Finalidade: Os componentes de layout do Angular Material fornecem blocos de construção predefinidos para estruturar a interface do usuário de forma responsiva e consistente com as diretrizes do Material Design. Eles ajudam a organizar o conteúdo, controlar o espaçamento e criar layouts complexos de maneira mais fácil e eficiente.
+Exemplos:
+mat-grid-list: Permite criar layouts de grade responsivos, onde os elementos (mat-grid-tile) se ajustam dinamicamente ao tamanho da tela. Usamos para exibir os cards de carros na página inicial.
+mat-card: Representa um contêiner de conteúdo temático, frequentemente usado para agrupar informações relacionadas. Vimos seu uso para exibir os detalhes de cada carro (CarCardComponent).
+Como ajudam: Eles abstraem a complexidade do layout CSS manual, oferecendo atributos e estrutura integrados para criar layouts comuns de forma declarativa e garantindo consistência visual com o Material Design.
+Diretivas do Roteador:
+
+Diferença entre routerLink e href:
+href: É um atributo padrão de tags <a> do HTML. Ao clicar em um link com href, o navegador realiza um recarregamento completo da página do servidor. O estado da aplicação JavaScript é perdido.
+routerLink: É uma diretiva fornecida pelo Angular Router. Ao clicar em um elemento com routerLink, o Angular Router intercepta o evento e realiza uma navegação do lado do cliente . A página não é recarregada; apenas a parte do aplicativo correspondente à nova rota é atualizada, preservando o estado do aplicativo e proporcionando uma experiência mais suave.
+Por que routerLink é preferível: Para rotas internas dentro de uma aplicação Angular, routerLink é preferível porque oferece uma experiência de navegação mais rápida e suave, evitando recarregamentos completos da página. Isso melhora o desempenho e a usabilidade, pois o estado da aplicação e os dados já carregados são mantidos durante a navegação.
+Serviços e Observables:
+
+Papel de um serviço no Angular: Um serviço no Angular é uma classe que encapsula lógica de negócios, dados ou funcionalidades que podem ser compartilhadas entre diferentes componentes da aplicação. Eles promovem a reutilização de código, a separação de responsabilidades e facilitam o gerenciamento do estado da aplicação. O EstoqueService é um exemplo, pois gerencia o estado do estoque dos carros.
+Diferença entre BehaviorSubject e Observable:
+Observable: Representa um fluxo de dados ao longo do tempo. Ele emite valores (notificações) para seus observadores. Um Observableé "frio" por padrão, o que significa que a emissão de valores começa apenas quando um observador se inscreve nele.
+BehaviorSubject: É um tipo de Subject(que também é um tipo de Observable) que armazena o último valor emitido e o emite imediatamente para qualquer novo observador que se inscreva. Ele sempre tem um valor atual. No EstoqueService, usamos BehaviorSubjectpara manter o estado atual do estoque e notificar os componentes sobre as mudanças.
+Utilização do estoque$: Os componentes como HomeComponent e CarCardComponent se inscrevem no estoque$ (que é um Observable derivado do BehaviorSubject no EstoqueService). O pipe async no template do CarCardComponent facilita a inscrição e a exibição do valor mais recente do estoque sem a necessidade de gerenciar manualmente a inscrição e a desinscrição. O HomeComponent também se inscreve para atualizar sua lista de carros com base no estoque.
+Tratamento de Eventos e Two-Way Binding:
+
+Integração com tratamento de eventos: Os componentes do Angular Material emitem eventos específicos quando certas ações ocorrem (por exemplo, um clique em um botão). Usamos a sintaxe (evento)="métodoNoComponente($event)" para vincular esses eventos a métodos nos nossos componentes, permitindo que a lógica da aplicação reaja às interações do usuário com os elementos do Material Design. No CarCardComponent, (click)="onAddToCart(car)" é um exemplo.
+Conceito de two-way binding: Two-way binding permite sincronizar dados entre o modelo (a propriedade no seu componente TypeScript) e a visão (o template HTML). Quando o dado no modelo muda, a visão é atualizada, e quando a visão é modificada pelo usuário (por exemplo, digitando em um input), o modelo é automaticamente atualizado.
+Exemplo conceitual com mat-input:
+HTML
+
+<mat-form-field>
+  <mat-label>Nome</mat-label>
+  <input matInput [(ngModel)]="nomeUsuario">
+</mat-form-field>
+<p>Nome digitado: {{ nomeUsuario }}</p>
+Neste exemplo, [(ngModel)]="nomeUsuario" cria um two-way binding com a propriedade nomeUsuario no componente TypeScript. Qualquer alteração no input matInput atualizará nomeUsuario, e qualquer mudança em nomeUsuario no código TypeScript será refletida no input. O matInput é um componente de input do Angular Material que fornece estilos e funcionalidades consistentes com o Material Design.
+Uso de Ícones:
+
+Processo para registrar e exibir ícones SVG personalizados:
+Importar MatIconRegistry e DomSanitizer: No seu componente (FooterComponent), você importa esses serviços do Angular Material e do Angular Platform Browser.
+Injetar os serviços no construtor: Você injeta instâncias de MatIconRegistry e DomSanitizer.
+Registrar o ícone com addSvgIcon(): Você usa o método addSvgIcon() do MatIconRegistry para registrar o seu ícone SVG. Este método recebe um nome para o ícone e a URL do arquivo SVG.
+Sanitizar a URL com bypassSecurityTrustResourceUrl(): Como a URL do arquivo SVG pode vir de uma fonte externa, é importante sanitizá-la usando this.domSanitizer.bypassSecurityTrustResourceUrl() antes de passá-la para o MatIconRegistry. Isso garante que a URL é segura para ser usada pelo Angular.
+Exibir o ícone no template com <mat-icon>: No seu template, você usa a tag <mat-icon> e especifica o nome do ícone registrado dentro da tag (por exemplo, <mat-icon svgIcon="facebook"></mat-icon>).
+Importância de DomSanitizer: O DomSanitizer é um serviço do Angular que ajuda a prevenir ataques de Cross-Site Scripting (XSS) ao marcar valores como seguros para serem usados em contextos sensíveis, como URLs de recursos. Ao usar bypassSecurityTrustResourceUrl(), você está dizendo ao Angular que confia na URL fornecida e que ela pode ser usada para carregar o ícone SVG. Sem a sanitização, o Angular bloquearia o carregamento de URLs potencialmente inseguras.
