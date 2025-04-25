@@ -6,7 +6,6 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { DetalhesComponent } from './components/detalhes/detalhes.component';
 import { CheckoutEntregaComponent } from './components/checkout-entrega/checkout-entrega.component';
 import { authGuard } from './auth.guard';
-import { DetalhePedidoComponent } from './components/detalhe-pedido/detalhe-pedido.component';
 
 export const routes: Routes = [
   {
@@ -24,7 +23,8 @@ export const routes: Routes = [
     component: PerfilComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'detalhe-pedido/:id', component: DetalhePedidoComponent } // Rota filha para detalhes do pedido
+      // A LINHA ABAIXO FOI REMOVIDA
+      // { path: 'detalhe-pedido/:id', component: DetalhePedidoComponent } // Rota filha para detalhes do pedido
     ]
   },
   {

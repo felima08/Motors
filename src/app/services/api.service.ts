@@ -3,6 +3,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+interface PedidoResumo { // Garanta que esta interface esteja aqui também
+  idPedido: string;
+  dataPedido: Date;
+  valorTotal: number;
+  usuarioId: string; // Adicione o usuarioId para mapear com a compra
+  // Outras propriedades relevantes da compra, ajuste conforme a sua API
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -62,5 +70,10 @@ export class ApiService {
 
   resetPassword(token: string, newPassword: string): Observable<any> {
     return this.patch(`passwordResetTokens/${token}`, { newPassword });
+  }
+
+  // Modifique a função getPedidosDoUsuario para buscar todas as compras
+  getPedidosDoUsuario(): Observable<PedidoResumo[]> {
+    return this.get<PedidoResumo[]>('compras');
   }
 }

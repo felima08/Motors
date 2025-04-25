@@ -3,12 +3,13 @@
 <div class="main-content">
   <h2 class="section-title">Nossos Modelos em Destaque</h2>
   <mat-grid-list cols="3" rowHeight="1:1" gutterSize="20px">
-    <mat-grid-tile *ngFor="let car of cars">
+    <mat-grid-tile *ngFor="let car of carsDestaque">
       <app-car-card
         [car]="car"
-        (addToCart)="adicionarAoCarrinho($event)"
-        (viewDetails)="viewDetails($event)"
-        [estoque$]="estoque$"
+        (addToCart)="adicionarAoCarrinho(car)"
+        (viewDetails)="viewDetails(car)"
+        [estoque$]="getEstoqueParaCarro(car.id)"
+        [vendido]="car.vendido"
       ></app-car-card>
     </mat-grid-tile>
   </mat-grid-list>

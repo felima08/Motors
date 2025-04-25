@@ -21,6 +21,7 @@ interface PedidoResumo {
   idPedido: string;
   dataPedido: Date;
   valorTotal: number;
+  usuarioId: string;
 }
 
 interface User {
@@ -106,18 +107,20 @@ export class PerfilComponent implements OnInit {
   }
 
   carregarPedidosDoUsuario(): void {
-    // Aqui você faria a chamada ao seu serviço para buscar os pedidos do usuário
-    // Exemplo (adapte para o seu ApiService):
-    this.apiService.getPedidosDoUsuario(this.userId).subscribe({
+    this.apiService.getPedidosDoUsuario().subscribe({ // Remova o this.userId daqui
       next: (pedidos: PedidoResumo[]) => {
-        this.seusPedidos = pedidos;
+        if (this.userId) {
+          this.seusPedidos = pedidos.filter(pedido => pedido.usuarioId === String(this.userId));
+        } else {
+          this.seusPedidos = [];
+          this.snackBar.open('Usuário não identificado.', 'Fechar', { duration: 3000 });
+        }
       },
       error: (error: any) => {
         console.error('Erro ao carregar os pedidos do usuário:', error);
         this.snackBar.open('Erro ao carregar os seus pedidos.', 'Fechar', { duration: 3000 });
       }
     });
-
     // Simulação de dados (remova quando a API estiver integrada)
     // this.seusPedidos = [
     //   { idPedido: 'PED001', dataPedido: new Date('2025-04-20'), valorTotal: 123.45 },
@@ -255,3 +258,4 @@ export class PerfilComponent implements OnInit {
     this.mostrarFavoritos = !this.mostrarFavoritos;
   }
 }
+

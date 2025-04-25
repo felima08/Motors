@@ -25,6 +25,7 @@ export class CarCardComponent {
     @Output() viewDetails = new EventEmitter<Car>();
     @Input() estoque$!: Observable<EstoqueMap>; // Use a interface EstoqueMap
     @Input() vendido: boolean | undefined;
+   
     
 
     ngOnInit(): void {

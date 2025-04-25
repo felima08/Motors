@@ -28,7 +28,7 @@ interface CarroCarrinho {
     MatCardModule,
     MatDividerModule,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
 ],
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css']

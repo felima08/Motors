@@ -225,6 +225,24 @@
         "cep": "04913-040",
         "metodoEnvio": "PAC"
       }
+    },
+    {
+      "id": "compra_1745606612728",
+      "itensComprados": [
+        "3",
+        "3",
+        "3"
+      ],
+      "total": 187502.97,
+      "dataCompra": "2025-04-25T18:43:32.728Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "PAC"
+      }
     }
   ],
   "passwordResetRequests": [

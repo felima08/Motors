@@ -23,7 +23,7 @@ interface Car {
   selector: 'app-detalhes',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, MatSnackBarModule, RouterModule, HeaderComponent],
-  templateUrl: './detalhes.component.html',
+  templateUrl:'./detalhes.component.html',
   styleUrls: ['./detalhes.component.css']
 })
 export class DetalhesComponent implements OnInit {

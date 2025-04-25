@@ -175,7 +175,7 @@
   </mat-card>
 
   <div class="pedidos-section">
-    <h2>Seus Pedidos</h2>
+    <h2>Seus Pedido</h2>
     <ul *ngIf="seusPedidos && seusPedidos.length > 0; else nenhumPedido">
       <li *ngFor="let pedido of seusPedidos">
         <a [routerLink]="['detalhe-pedido', pedido.idPedido]">
