@@ -11,7 +11,8 @@
       "cidade": "São Paulo",
       "estado": "SP",
       "cep": "04913-044",
-      "cpf": "523.114.848-26"
+      "cpf": "523.114.848-26",
+      "fotoPerfilUrl": "/assets/images/perfil.webp"
     },
     {
       "id": "2",
@@ -115,6 +116,114 @@
         "estado": "SP",
         "cep": "04913-040",
         "metodoEnvio": "Sedex"
+      }
+    },
+    {
+      "id": "compra_1745593712488",
+      "itensComprados": [
+        "3"
+      ],
+      "total": 62500.99,
+      "dataCompra": "2025-04-25T15:08:32.488Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "Sedex"
+      }
+    },
+    {
+      "id": "compra_1745595277808",
+      "itensComprados": [
+        "2",
+        "3",
+        "3",
+        "3"
+      ],
+      "total": 235503.46999999997,
+      "dataCompra": "2025-04-25T15:34:37.808Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "Sedex"
+      }
+    },
+    {
+      "id": "compra_1745595449517",
+      "itensComprados": [
+        "2",
+        "3",
+        "3",
+        "3"
+      ],
+      "total": 235503.46999999997,
+      "dataCompra": "2025-04-25T15:37:29.517Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "Sedex"
+      }
+    },
+    {
+      "id": "compra_1745595486884",
+      "itensComprados": [
+        "3",
+        "3",
+        "3"
+      ],
+      "total": 187502.97,
+      "dataCompra": "2025-04-25T15:38:06.884Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "PAC"
+      }
+    },
+    {
+      "id": "compra_1745595668635",
+      "itensComprados": [
+        "3",
+        "3",
+        "3"
+      ],
+      "total": 187502.97,
+      "dataCompra": "2025-04-25T15:41:08.636Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "PAC"
+      }
+    },
+    {
+      "id": "compra_1745596045775",
+      "itensComprados": [
+        "3",
+        "3",
+        "3"
+      ],
+      "total": 187502.97,
+      "dataCompra": "2025-04-25T15:47:25.775Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "PAC"
       }
     }
   ],

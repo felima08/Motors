@@ -17,44 +17,5 @@
     {{ purchaseMessage }}
   </div>
 </div>
-
-<div class="chat-widget">
-  <button class="chat-button" (click)="toggleChat()">
-    <mat-icon>chat</mat-icon> Fale Conosco
-    <span class="unread-count" *ngIf="chatUnreadMessages > 0">{{chatUnreadMessages}}</span>
-  </button>
-  <div class="chat-container" [class.open]="isChatOpen">
-    <div class="chat-header">
-      <mat-icon>person</mat-icon> Atendimento ao Cliente
-      <button class="close-button" (click)="toggleChat()">
-        <mat-icon>close</mat-icon>
-      </button>
-    </div>
-    <div class="chat-body">
-      <div *ngFor="let msg of messages" class="message" [class.sent]="msg.isUser" [class.received]="!msg.isUser">
-        {{msg.text}}
-        <div class="message-time">{{msg.timestamp | date:'HH:mm'}}</div>
-      </div>
-      <div class="typing-indicator" *ngIf="isTyping">
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
-      </div>
-    </div>
-    <div class="chat-footer">
-      <mat-form-field class="message-input">
-        <textarea matInput [(ngModel)]="newMessage"
-                  (keydown.enter)="sendMessage()"
-                  placeholder="Digite sua mensagem..."></textarea>
-      </mat-form-field>
-      <button mat-icon-button color="primary"
-              class="send-button"
-              (click)="sendMessage()"
-              [disabled]="!newMessage.trim()">
-        <mat-icon>send</mat-icon>
-      </button>
-    </div>
-  </div>
-</div>
-
+<app-chat-online></app-chat-online>
 <app-footer></app-footer>

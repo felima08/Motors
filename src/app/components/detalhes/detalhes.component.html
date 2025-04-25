@@ -1,7 +1,3 @@
-<div>
-  <app-header></app-header>
-</div>
-
 <div class="detalhes-container">
   <h2 class="detalhes-titulo">Detalhes do Carro</h2>
   <div *ngIf="carro" class="carro-detalhe">
@@ -12,9 +8,9 @@
       (click)="toggleFavorito()"
       class="favorito-button"
     >
-      <mat-icon [style.color]="isFavoritado ? 'primary' : ''"
-        >{{ isFavoritado ? 'favorite' : 'favorite_border' }}</mat-icon
-      >
+      <mat-icon [style.color]="isFavoritado ? 'primary' : ''">
+        {{ isFavoritado ? 'favorite' : 'favorite_border' }}
+      </mat-icon>
       {{ isFavoritado ? 'Desfavoritar' : 'Favoritar' }}
     </button>
     <img
@@ -34,12 +30,16 @@
     <p class="descricao">{{ carro.description }}</p>
     <div class="acoes-detalhe">
       <button
+        *ngIf="!carro?.vendido"
         mat-raised-button
         color="primary"
-        (click)="adicionarAoCarrinhoNoService(carro)"
+        (click)="adicionarAoCarrinho(carro!)"
       >
         Adicionar ao Carrinho
       </button>
+      <span *ngIf="carro?.vendido" style="color: red; font-weight: bold;">
+        Vendido
+      </span>
       <button
         mat-button
         color="accent"

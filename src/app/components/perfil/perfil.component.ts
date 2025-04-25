@@ -15,6 +15,13 @@ import { RouterLink } from '@angular/router';
 import { FavoritosService } from './favoritos.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CarComponent } from '../models/car/car.component';
+import { ChatOnlineComponent } from '../chat-online/chat-online.component';
+
+interface PedidoResumo {
+  idPedido: string;
+  dataPedido: Date;
+  valorTotal: number;
+}
 
 interface User {
   id?: number;
@@ -33,7 +40,7 @@ interface User {
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, MatCheckboxModule, MatCardModule, RouterLink, MatGridListModule],
+  imports: [CommonModule, FormsModule, ChatOnlineComponent , MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, MatCheckboxModule, MatCardModule, RouterLink, MatGridListModule],
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css'],
 })
@@ -60,6 +67,7 @@ export class PerfilComponent implements OnInit {
   cep: string = '';
 
   editarDadosPessoais: boolean = false; // Nova variável para controlar a edição
+  seusPedidos: PedidoResumo[] = []; // Adicione esta linha
 
   constructor(
     private snackBar: MatSnackBar,
@@ -85,7 +93,7 @@ export class PerfilComponent implements OnInit {
           this.cidade = user.cidade || '';
           this.estado = user.estado || '';
           this.cep = user.cep || '';
-        } catch (error) {
+        } catch (error: any) {
           console.error('Erro ao parsear loggedInUser do localStorage:', error);
           this.snackBar.open('Erro ao carregar os dados do perfil.', 'Fechar', { duration: 3000 });
         }
@@ -93,7 +101,28 @@ export class PerfilComponent implements OnInit {
       this.favoritosService.favoritos$.subscribe(favoritos => {
         this.carrosFavoritos = favoritos;
       });
+      this.carregarPedidosDoUsuario(); // Chame a função para carregar os pedidos
     }
+  }
+
+  carregarPedidosDoUsuario(): void {
+    // Aqui você faria a chamada ao seu serviço para buscar os pedidos do usuário
+    // Exemplo (adapte para o seu ApiService):
+    this.apiService.getPedidosDoUsuario(this.userId).subscribe({
+      next: (pedidos: PedidoResumo[]) => {
+        this.seusPedidos = pedidos;
+      },
+      error: (error: any) => {
+        console.error('Erro ao carregar os pedidos do usuário:', error);
+        this.snackBar.open('Erro ao carregar os seus pedidos.', 'Fechar', { duration: 3000 });
+      }
+    });
+
+    // Simulação de dados (remova quando a API estiver integrada)
+    // this.seusPedidos = [
+    //   { idPedido: 'PED001', dataPedido: new Date('2025-04-20'), valorTotal: 123.45 },
+    //   { idPedido: 'PED002', dataPedido: new Date('2025-04-22'), valorTotal: 678.90 },
+    // ];
   }
 
   onFileSelected(event: any) {
@@ -113,7 +142,7 @@ export class PerfilComponent implements OnInit {
             this.fotoPerfilUrl = response.fotoPerfilUrl;
             this.atualizarLocalStorage({ fotoPerfilUrl: this.fotoPerfilUrl });
           },
-          error: (error) => {
+          error: (error: any) => {
             this.snackBar.open('Erro ao atualizar a foto de perfil.', 'Fechar', { duration: 3000 });
             console.error('Erro ao atualizar a foto de perfil:', error);
           }
@@ -131,12 +160,12 @@ export class PerfilComponent implements OnInit {
     if (this.userId && this.editarDadosPessoais) {
       this.apiService.updateUser(this.userId, { telefone: this.telefone, cpf: this.cpf })
         .subscribe({
-          next: (response) => {
+          next: (response: any) => {
             this.snackBar.open('Dados pessoais atualizados com sucesso!', 'Fechar', { duration: 2000 });
             this.atualizarLocalStorage({ telefone: this.telefone, cpf: this.cpf });
             this.editarDadosPessoais = false; // Desabilita a edição após salvar
           },
-          error: (error) => {
+          error: (error: any) => {
             this.snackBar.open('Erro ao atualizar os dados pessoais.', 'Fechar', { duration: 3000 });
             console.error('Erro ao atualizar os dados pessoais:', error);
           }
@@ -151,14 +180,14 @@ export class PerfilComponent implements OnInit {
       if (this.userId) {
         this.apiService.updateUser(this.userId, { password: this.novaSenha })
           .subscribe({
-            next: (response) => {
+            next: (response: any) => {
               this.mensagemSenha = 'Senha alterada com sucesso!';
               this.snackBar.open(this.mensagemSenha, 'Fechar', { duration: 2000 });
               this.senhaAtual = '';
               this.novaSenha = '';
               this.confirmarNovaSenha = '';
             },
-            error: (error) => {
+            error: (error: any) => {
               this.mensagemSenha = 'Erro ao alterar a senha.';
               this.snackBar.open(this.mensagemSenha, 'Fechar', { duration: 3000 });
               console.error('Erro ao alterar a senha:', error);
@@ -177,11 +206,11 @@ export class PerfilComponent implements OnInit {
     if (this.userId) {
       this.apiService.updateUser(this.userId, { receberNotificacoes: this.receberNotificacoes })
         .subscribe({
-          next: (response) => {
+          next: (response: any) => {
             this.snackBar.open(`Notificações por email ${this.receberNotificacoes ? 'ativadas' : 'desativadas'} com sucesso!`, 'Fechar', { duration: 2000 });
             this.atualizarLocalStorage({ receberNotificacoes: this.receberNotificacoes });
           },
-          error: (error) => {
+          error: (error: any) => {
             this.snackBar.open('Erro ao atualizar as configurações de notificação.', 'Fechar', { duration: 3000 });
             console.error('Erro ao atualizar as notificações:', error);
           }
@@ -195,11 +224,11 @@ export class PerfilComponent implements OnInit {
     if (this.userId) {
       this.apiService.updateUser(this.userId, { endereco: this.endereco, cidade: this.cidade, estado: this.estado, cep: this.cep })
         .subscribe({
-          next: (response) => {
+          next: (response: any) => {
             this.snackBar.open('Endereço atualizado com sucesso!', 'Fechar', { duration: 2000 });
             this.atualizarLocalStorage({ endereco: this.endereco, cidade: this.cidade, estado: this.estado, cep: this.cep });
           },
-          error: (error) => {
+          error: (error: any) => {
             this.snackBar.open('Erro ao atualizar o endereço.', 'Fechar', { duration: 3000 });
             console.error('Erro ao atualizar o endereço:', error);
           }
@@ -216,7 +245,7 @@ export class PerfilComponent implements OnInit {
         const loggedInUser: User = JSON.parse(loggedInUserString);
         const updatedUser = { ...loggedInUser, ...updates };
         localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
-      } catch (error) {
+      } catch (error: any) {
         console.error('Erro ao atualizar localStorage:', error);
       }
     }

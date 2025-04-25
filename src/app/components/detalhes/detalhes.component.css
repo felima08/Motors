@@ -1,102 +1,101 @@
-/* detalhes.component.css */
 .detalhes-container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 80px;
-  }
-  
-  .detalhes-titulo {
-    font-size: 2em;
-    color: #3f51b5;
-    margin-bottom: 10px;
-    text-align: center;
-    width: 100%;
-  }
-  
-  .carro-detalhe {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 800px;
-    width: 100%;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: white;
-  }
-  
-  .carro-nome {
-    font-size: 1.8em;
-    color: #3f51b5;
-    margin-bottom: 10px;
-    text-align: center;
-    width: 100%;
-  }
-  
-  .favorito-button {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    padding: 8px 12px;
-    font-size: 1em;
-    cursor: pointer;
-    outline: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border: 1px solid #3f51b5;
-    color: #3f51b5;
-    background-color: white;
-  }
-  
-  .favorito-button:hover {
-    background-color: #e3f2fd;
-  }
-  
-  .favorito-button.favoritado {
-    color: primary; /* Cor do texto e borda quando favoritado */
-  }
-  
-  .favorito-button .mat-icon {
-    margin-right: 5px;
-    /* A cor do ícone será controlada diretamente no template */
-  }
-  
-  .carro-imagem {
-    max-width: 300px;
-    height: auto;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .preco {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #3f51b5;
-    margin-bottom: 15px;
-  }
-  
-  .descricao {
-    text-align: justify;
-    margin-bottom: 20px;
-    color: #555;
-    line-height: 1.6;
-  }
-  
-  .acoes-detalhe {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-    align-items: center;
-  }
-  
-  .voltar-button {
-    color: #3f51b5;
-  }
-  
-  .voltar-button:hover {
-    background-color: #e3f2fd;
-  }
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.detalhes-titulo {
+  font-size: 2em;
+  color: #3f51b5;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.carro-detalhe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.carro-nome {
+  font-size: 1.8em;
+  color: #3f51b5;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.favorito-button {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 1em;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #3f51b5;
+  color: #3f51b5;
+  background-color: white;
+}
+
+.favorito-button:hover {
+  background-color: #e3f2fd;
+}
+
+.favorito-button.favoritado {
+  color: primary; /* Cor do texto e borda quando favoritado */
+}
+
+.favorito-button .mat-icon {
+  margin-right: 5px;
+  /* A cor do ícone será controlada diretamente no template */
+}
+
+.carro-imagem {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.preco {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #3f51b5;
+  margin-bottom: 15px;
+}
+
+.descricao {
+  text-align: justify;
+  margin-bottom: 20px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.acoes-detalhe {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.voltar-button {
+  color: #3f51b5;
+}
+
+.voltar-button:hover {
+  background-color: #e3f2fd;
+}

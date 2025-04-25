@@ -16,6 +16,7 @@ import { EstoqueService } from '../estoque/estoque.service';
 import { MatSnackBar } from '@angular/material/snack-bar'; // Importe MatSnackBar
 import { Clipboard } from '@angular/cdk/clipboard'; // Importe Clipboard
 import { ApiService } from '../../services/api.service'; // Importe o ApiService
+import { ChatOnlineComponent } from '../chat-online/chat-online.component';
 
 @Component({
   selector: 'app-checkout-entrega',
@@ -23,6 +24,7 @@ import { ApiService } from '../../services/api.service'; // Importe o ApiService
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    ChatOnlineComponent,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,

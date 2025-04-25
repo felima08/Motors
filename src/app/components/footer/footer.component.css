@@ -1,131 +1,147 @@
 .footer {
-    background-color: #000000dc;
-    color: #f0f0f0;
-    padding: 20px 15px; /* Mantendo o padding menor do container */
-    font-size: 1.0em; /* Aumentando o tamanho da fonte base */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
+  background-color: #000000dc;
+  color: #f0f0f0;
+  padding: 20px 15px;
+  font-size: 1.0em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.footer-section {
+  margin-bottom: 25px;
+  flex: 1 1 220px;
+  text-align: center;
+}
+
+.footer-section h2 {
+  color: #eee;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #e91e63;
+  padding-bottom: 6px;
+  font-size: 1.2em;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* ... seus outros estilos do footer ... */
+
+.footer-section.social {
+  text-align: center; /* Centraliza o título "Siga-nos" */
+}
+
+
+
+.footer-section .social-links {
+  display: flex; /* Coloca os links em linha (horizontalmente) */
+  justify-content: center; /* Centraliza os links horizontalmente */
+  align-items: center; /* Alinha os itens verticalmente (se necessário) */
+  gap: 20px; /* Adiciona um espaçamento de 20px entre os ícones */
+  margin-top: 15px; /* Espaçamento acima dos links */
+}
+
+.footer-section .social-links a {
+  color: #ccc; /* Cor inicial dos links/ícones (você pode mudar) */
+  font-size: 1.5em; /* Tamanho inicial para o espaço dos ícones */
+  text-decoration: none; /* Remove sublinhado dos links */
+  display: inline-flex; /* Garante que os ícones se comportem como blocos em linha para o gap funcionar */
+  align-items: center;
+  justify-content: center;
+  width: 40px; 
+  height: 40px; 
+}
+.footer-section .social-links a:hover {
+  color: #e91e63; /* Cor ao passar o mouse */
+}
+
+.footer-section .social-links mat-icon {
+  font-size: inherit; /* Herda o tamanho do <a> */
+  width: inherit;
+  height: inherit;
+}
+
+.footer-section p,
+.footer-section ul,
+.footer-section .contact,
+.footer-section {
+  margin-top: 15px;
+  font-size: 1.0em;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #e91e63;
+}
+
+.footer-section .contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-section .contact mat-icon {
+  margin-bottom: 6px;
+  font-size: 1.1em;
+}
+
+.footer-section .contact a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section .contact a:hover {
+  color: #e91e63;
+}
+
+
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #555;
+  margin-top: 25px;
+  font-size: 0.9em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-bottom a {
+  color: #e91e63;
+  text-decoration: none;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
   .footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: flex-start;
-  }
-  
-  .footer-section {
-    margin-bottom: 25px; /* Aumentei um pouco a margem inferior entre as seções */
-    flex: 1 1 220px; /* Aumentei um pouco a largura mínima */
-    text-align: center;
-  }
-  
-  .footer-section h2 {
-    color: #eee;
-    margin-bottom: 15px; /* Aumentei a margem abaixo do título */
-    border-bottom: 1px solid #e91e63;
-    padding-bottom: 6px; /* Aumentei o padding abaixo do título */
-    font-size: 1.2em; /* Aumentei o tamanho da fonte do título */
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .footer-section p,
-  .footer-section ul,
-  .footer-section .contact,
-  .footer-section .social-links {
-    margin-top: 15px; /* Aumentei a margem superior */
-    font-size: 1.0em; /* Aumentei o tamanho da fonte do texto */
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section ul li {
-    margin-bottom: 10px; /* Aumentei a margem entre os itens da lista */
-  }
-  
-  .footer-section ul li a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-section ul li a:hover {
-    color: #e91e63;
-  }
-  
-  .footer-section .contact {
-    display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
-  .footer-section .contact mat-icon {
-    margin-bottom: 6px; /* Aumentei a margem abaixo do ícone */
-    font-size: 1.1em; /* Aumentei o tamanho do ícone */
-  }
-  
-  .footer-section .contact a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-section .contact a:hover {
-    color: #e91e63;
-  }
-  
-  .footer-section .social {
+
+  .footer-section {
+    width: 90%;
     text-align: center;
+    margin-bottom: 35px;
   }
-  
-  .footer-section .social-links {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .footer-section .social-links a {
-    display: inline-block;
-    margin: 0 15px; /* Aumentei a margem horizontal dos ícones sociais */
-    font-size: 1.6em; /* Aumentei o tamanho dos ícones sociais */
-    color: #ccc;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-section .social-links a:hover {
-    color: #e91e63;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    padding-top: 20px; /* Aumentei um pouco o padding superior */
-    border-top: 1px solid #555;
-    margin-top: 25px; /* Aumentei um pouco a margem superior */
-    font-size: 0.9em; /* Aumentei o tamanho da fonte do bottom */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .footer-bottom a {
-    color: #e91e63;
-    text-decoration: none;
-  }
-  
-  /* Estilos responsivos */
-  @media (max-width: 768px) {
-    .footer-content {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .footer-section {
-      width: 90%;
-      text-align: center;
-      margin-bottom: 35px; /* Aumentei a margem inferior em telas menores */
-    }
-  }
+}

@@ -173,4 +173,21 @@
       </mat-checkbox>
     </mat-card-content>
   </mat-card>
+
+  <div class="pedidos-section">
+    <h2>Seus Pedidos</h2>
+    <ul *ngIf="seusPedidos && seusPedidos.length > 0; else nenhumPedido">
+      <li *ngFor="let pedido of seusPedidos">
+        <a [routerLink]="['detalhe-pedido', pedido.idPedido]">
+          Pedido #{{ pedido.idPedido }} - Data: {{ pedido.dataPedido | date: 'short' }} - Valor: {{ pedido.valorTotal | currency: 'BRL' }}
+        </a>
+      </li>
+    </ul>
+    <ng-template #nenhumPedido>
+      <p>Você ainda não fez nenhum pedido.</p>
+    </ng-template>
+  </div>
+
+ 
 </div>
+<app-chat-online></app-chat-online>

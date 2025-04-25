@@ -1,5 +1,7 @@
 .car-card {
     max-width: 350px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.459);
   }
   
   .car-card img {
@@ -9,7 +11,7 @@
   }
   
   .car-card:hover img {
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.466);
     filter: brightness(1.1);
   }
   

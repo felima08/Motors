@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { HeaderComponent } from "../header/header.component";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FooterComponent } from "../footer/footer.component"; // Remova se não usar aqui
+import { ChatOnlineComponent } from '../chat-online/chat-online.component';
 
 interface CarroCarrinho {
   car: any;
@@ -21,6 +22,7 @@ interface CarroCarrinho {
   imports: [
     CommonModule,
     MatButtonModule,
+    ChatOnlineComponent,
     MatIconModule,
     RouterLink,
     MatCardModule,
