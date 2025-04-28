@@ -1,5 +1,3 @@
-<app-header></app-header>
-
 <div class="checkout-container">
     <h1>Checkout</h1>
 
@@ -176,4 +174,63 @@
         <button mat-raised-button color="primary" routerLink="/home">Voltar para a Loja <mat-icon>store</mat-icon></button>
     </div>
 </div>
+
+
+<div *ngIf="etapaAtual === 4" class="pedido-concluido">
+    <mat-icon class="success-icon">check_circle_outline</mat-icon>
+    <h2>Pedido Concluído com Sucesso!</h2>
+    <p class="agradecimento">Agradecemos por sua compra!</p>
+    <mat-card class="pedido-info">
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item>
+                    <strong>Número do Pedido:</strong> {{ numeroPedidoSimulado }}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>Data do Pedido:</strong> {{ getDataPedidoFormatada() }} às {{ getHoraPedidoFormatada() }}
+                </mat-list-item>
+                <mat-list-item>
+                    <strong>Total da Compra:</strong> R$ {{ total.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}
+                </mat-list-item>
+
+                <mat-list-item>
+                    <strong>Itens Comprados:</strong>
+                    <ul style="margin-top: 8px;">
+                        <li *ngFor="let item of itensCarrinho">{{ item.name }}</li>
+                    </ul>
+                </mat-list-item>
+
+                <mat-list-item *ngIf="cupomDigitado">
+                    <strong>Cupom Utilizado:</strong> {{ cupomDigitado }}
+                    <span *ngIf="descontoAplicado > 0">
+                        (Desconto de R$ {{ descontoAplicado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }})
+                    </span>
+                </mat-list-item>
+
+                <mat-list-item>
+    <strong>Endereço de Entrega:</strong>
+    <ul style="margin-top: 8px;">
+        <li>{{ dadosEntrega?.endereco }}</li>
+        <li>{{ dadosEntrega?.cidade }} - {{ dadosEntrega?.estado }}, {{ dadosEntrega?.cep }}</li>
+        <li>Método de Envio: {{ dadosEntrega?.metodoEnvio }}</li>
+    </ul>
+</mat-list-item>
+
+                <mat-list-item>
+                    <strong>Método de Pagamento:</strong> {{ pagamentoForm.value.metodoPagamento }}
+                    <span *ngIf="pagamentoForm.value.parcelas && pagamentoForm.value.parcelas > 1">
+                        ({{ pagamentoForm.value.parcelas }} parcelas de R$ {{ calcularValorParcela().toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }})
+                    </span>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+        <mat-card-actions style="justify-content: center;">
+            <button mat-raised-button color="primary" routerLink="/pedidos" class="ver-pedidos-btn">
+                <mat-icon>assignment</mat-icon> Ver Meus Pedidos
+            </button>
+            <button mat-button routerLink="/home">Continuar Comprando</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
 <app-chat-online></app-chat-online>

@@ -1,10 +1,19 @@
 .checkout-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    padding-top: 80px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-top: 10px;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.mat-sys-primary{
+  color: black;
+}
   
   .checkout-form {
     width: 100%;
@@ -13,7 +22,7 @@
     flex-direction: column;
   }
   
-  mat-form-field {
+  .mat-form-field {
     margin-bottom: 15px;
   }
   
@@ -70,4 +79,50 @@ h1, h2 {
     font-size: 48px;
     color: green;
     margin-bottom: 10px;
+}
+.pedido-concluido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.success-icon {
+  font-size: 64px;
+  color: green;
+  margin-bottom: 20px;
+}
+
+.agradecimento {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.pedido-info {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.pedido-info strong {
+  font-weight: 500;
+}
+
+.ver-pedidos-btn {
+  margin-right: 10px;
+}
+
+.pedido-info mat-list-item {
+  padding: 8px 0;
+}
+
+.pedido-info mat-list-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pedido-info mat-list-item ul li {
+  margin-bottom: 4px;
 }

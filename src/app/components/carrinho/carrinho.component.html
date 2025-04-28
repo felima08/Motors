@@ -62,6 +62,15 @@
           <strong>R$ {{ total.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</strong>
         </div>
 
+        <mat-form-field>
+          <mat-label>Cupom de Desconto</mat-label>
+          <input matInput [(ngModel)]="cupomDigitado">
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="aplicarCupom()">Aplicar Cupom</button>
+
+        <p *ngIf="descontoAplicado > 0" class="desconto">Desconto Aplicado: R$ {{ descontoAplicado | number:'1.2-2' }}</p>
+        <p class="total" *ngIf="descontoAplicado > 0">Total com Desconto: R$ {{ total | number:'1.2-2' }}</p>
+
         <div class="action-buttons">
           <button mat-stroked-button routerLink="/home" class="continue-btn">
             Continuar Comprando
@@ -69,7 +78,7 @@
           <button mat-raised-button color="warn" (click)="limparCarrinho()" class="clear-btn">
             Limpar Carrinho
           </button>
-          <button mat-raised-button  routerLink="checkout/entrega" color="primary" (click)="prosseguirParaEntrega()" class="checkout-btn">
+          <button mat-raised-button routerLink="checkout/entrega" color="primary" (click)="prosseguirParaEntrega()" class="checkout-btn">
             Prosseguir para Entrega
             <mat-icon>chevron_right</mat-icon>
           </button>

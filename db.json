@@ -86,12 +86,12 @@
   ],
   "compras": [
     {
-      "id": "compra_1745436126487",
+      "id": "compra_1745866305023",
       "itensComprados": [
-        "2"
+        "6"
       ],
-      "total": 48000.5,
-      "dataCompra": "2025-04-23T19:22:06.487Z",
+      "total": 92100.75,
+      "dataCompra": "2025-04-28T18:51:45.024Z",
       "usuarioId": "1",
       "enderecoEntrega": {
         "endereco": "Rua Ernesto Antônio Moraes 6",
@@ -99,156 +99,29 @@
         "estado": "SP",
         "cep": "04913-040",
         "metodoEnvio": "PAC"
-      }
-    },
-    {
-      "id": "compra_1745516398846",
-      "itensComprados": [
-        "10",
-        "10"
-      ],
-      "total": 220000,
-      "dataCompra": "2025-04-24T17:39:58.847Z",
-      "usuarioId": "1",
-      "enderecoEntrega": {
-        "endereco": "Rua Ernesto Antônio Moraes 6",
-        "cidade": "São Paulo",
-        "estado": "SP",
-        "cep": "04913-040",
-        "metodoEnvio": "Sedex"
-      }
-    },
-    {
-      "id": "compra_1745593712488",
-      "itensComprados": [
-        "3"
-      ],
-      "total": 62500.99,
-      "dataCompra": "2025-04-25T15:08:32.488Z",
-      "usuarioId": "1",
-      "enderecoEntrega": {
-        "endereco": "Rua Ernesto Antônio Moraes 6",
-        "cidade": "São Paulo",
-        "estado": "SP",
-        "cep": "04913-040",
-        "metodoEnvio": "Sedex"
-      }
-    },
-    {
-      "id": "compra_1745595277808",
-      "itensComprados": [
-        "2",
-        "3",
-        "3",
-        "3"
-      ],
-      "total": 235503.46999999997,
-      "dataCompra": "2025-04-25T15:34:37.808Z",
-      "usuarioId": "1",
-      "enderecoEntrega": {
-        "endereco": "Rua Ernesto Antônio Moraes 6",
-        "cidade": "São Paulo",
-        "estado": "SP",
-        "cep": "04913-040",
-        "metodoEnvio": "Sedex"
-      }
-    },
-    {
-      "id": "compra_1745595449517",
-      "itensComprados": [
-        "2",
-        "3",
-        "3",
-        "3"
-      ],
-      "total": 235503.46999999997,
-      "dataCompra": "2025-04-25T15:37:29.517Z",
-      "usuarioId": "1",
-      "enderecoEntrega": {
-        "endereco": "Rua Ernesto Antônio Moraes 6",
-        "cidade": "São Paulo",
-        "estado": "SP",
-        "cep": "04913-040",
-        "metodoEnvio": "Sedex"
-      }
-    },
-    {
-      "id": "compra_1745595486884",
-      "itensComprados": [
-        "3",
-        "3",
-        "3"
-      ],
-      "total": 187502.97,
-      "dataCompra": "2025-04-25T15:38:06.884Z",
-      "usuarioId": "1",
-      "enderecoEntrega": {
-        "endereco": "Rua Ernesto Antônio Moraes 6",
-        "cidade": "São Paulo",
-        "estado": "SP",
-        "cep": "04913-040",
-        "metodoEnvio": "PAC"
-      }
-    },
-    {
-      "id": "compra_1745595668635",
-      "itensComprados": [
-        "3",
-        "3",
-        "3"
-      ],
-      "total": 187502.97,
-      "dataCompra": "2025-04-25T15:41:08.636Z",
-      "usuarioId": "1",
-      "enderecoEntrega": {
-        "endereco": "Rua Ernesto Antônio Moraes 6",
-        "cidade": "São Paulo",
-        "estado": "SP",
-        "cep": "04913-040",
-        "metodoEnvio": "PAC"
-      }
-    },
-    {
-      "id": "compra_1745596045775",
-      "itensComprados": [
-        "3",
-        "3",
-        "3"
-      ],
-      "total": 187502.97,
-      "dataCompra": "2025-04-25T15:47:25.775Z",
-      "usuarioId": "1",
-      "enderecoEntrega": {
-        "endereco": "Rua Ernesto Antônio Moraes 6",
-        "cidade": "São Paulo",
-        "estado": "SP",
-        "cep": "04913-040",
-        "metodoEnvio": "PAC"
-      }
-    },
-    {
-      "id": "compra_1745606612728",
-      "itensComprados": [
-        "3",
-        "3",
-        "3"
-      ],
-      "total": 187502.97,
-      "dataCompra": "2025-04-25T18:43:32.728Z",
-      "usuarioId": "1",
-      "enderecoEntrega": {
-        "endereco": "Rua Ernesto Antônio Moraes 6",
-        "cidade": "São Paulo",
-        "estado": "SP",
-        "cep": "04913-040",
-        "metodoEnvio": "PAC"
-      }
+      },
+      "cupomUsado": null,
+      "valorDesconto": 0
     }
   ],
   "passwordResetRequests": [
+  
+  ],
+  "cupons": [
     {
-      "id": "4a1b",
-      "email": "felps112233@gmail.com"
+      "id": "1",
+      "codigo": "DESCONTO10",
+      "desconto": 10
+    },
+    {
+      "id": "2",
+      "codigo": "SUPER20",
+      "desconto": 20
+    },
+    {
+      "id": "3",
+      "codigo": "FRETEGRATIS",
+      "desconto": 0
     }
   ]
 }

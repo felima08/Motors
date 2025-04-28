@@ -35,5 +35,8 @@ app-root {
   background: #F44336 !important;
 }
 
+.mat-sys-primary{
+  color: black;
+}
 
 

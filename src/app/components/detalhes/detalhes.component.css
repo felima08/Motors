@@ -4,11 +4,13 @@
   flex-direction: column;
   align-items: center;
   padding-top: 80px;
+  background-image: url(/2372.jpg);
+  min-height: 100vh; /* Garante que o fundo cubra a tela */
 }
 
 .detalhes-titulo {
   font-size: 2em;
-  color: #3f51b5;
+  color: #f0f0f0; /* Texto claro para fundo escuro */
   margin-bottom: 10px;
   text-align: center;
   width: 100%;
@@ -21,15 +23,16 @@
   max-width: 800px;
   width: 100%;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #555; /* Borda mais escura */
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+  background-color: #222; /* Fundo escuro */
+  color: #f0f0f0; /* Texto claro */
 }
 
 .carro-nome {
   font-size: 1.8em;
-  color: #3f51b5;
+  color: #f0f0f0;
   margin-bottom: 10px;
   text-align: center;
   width: 100%;
@@ -44,23 +47,23 @@
   font-size: 1em;
   cursor: pointer;
   outline: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid #3f51b5;
-  color: #3f51b5;
-  background-color: white;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  border: 1px solid #f0f0f0;
+  color: #f0f0f0;
+  background-color: transparent;
 }
 
 .favorito-button:hover {
-  background-color: #e3f2fd;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .favorito-button.favoritado {
-  color: primary; /* Cor do texto e borda quando favoritado */
+  color: primary; /* Mantém a cor primária para o ícone */
+  border-color: primary;
 }
 
 .favorito-button .mat-icon {
   margin-right: 5px;
-  /* A cor do ícone será controlada diretamente no template */
 }
 
 .carro-imagem {
@@ -68,20 +71,20 @@
   height: auto;
   margin-bottom: 20px;
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .preco {
   font-size: 1.5em;
   font-weight: bold;
-  color: #3f51b5;
+  color: #f0f0f0;
   margin-bottom: 15px;
 }
 
 .descricao {
   text-align: justify;
   margin-bottom: 20px;
-  color: #555;
+  color: #ccc;
   line-height: 1.6;
 }
 
@@ -92,10 +95,44 @@
   align-items: center;
 }
 
+.acoes-detalhe button {
+  /* Estilos para os botões de ação (Adicionar ao Carrinho, Voltar) */
+}
+
+.acoes-detalhe button:not(.voltar-button) {
+  /* Estilos específicos para o botão "Adicionar ao Carrinho" */
+  background-color: black;
+  color: white;
+ 
+}
+
+.acoes-detalhe button:not(.voltar-button):hover {
+  background-color: color-mix(in srgb, primary 80%, black);
+  
+}
+
 .voltar-button {
-  color: #3f51b5;
+  color: #f0f0f0;
+  border: 1px solid #f0f0f0;
+  background-color: transparent;
 }
 
 .voltar-button:hover {
-  background-color: #e3f2fd;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.acoes-detalhe span {
+  color: #ff4d4d; /* Vermelho mais escuro para "Vendido" */
+}
+
+.acoes-detalhe span {
+  color: #ff6666; /* Vermelho mais claro para "Vendido" */
+}
+
+.acoes-detalhe span {
+  color: #cc0000; /* Vermelho ainda mais escuro para "Vendido" */
+}
+
+.acoes-detalhe span {
+  color: #e63946; /* Um tom de vermelho */
 }

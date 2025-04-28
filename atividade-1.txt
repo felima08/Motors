@@ -1,3 +1,5 @@
+dia 1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 1 -Componentes de Layout: Explique a finalidade e forneça exemplos de pelo menos dois componentes de layout do Angular Material que usamos ou mencionamos (como mat-grid-list, mat-card). Como eles ajudam na estruturação da interface do usuário?
 
 2-Diretivas do Router: Discutimos o uso de routerLink em vez de href para navegação dentro da aplicação Angular. Qual é a principal diferença entre eles e por que routerLink é preferível para rotas internas em uma aplicação Angular que utiliza o Angular Router?
@@ -55,3 +57,31 @@ Registrar o ícone com addSvgIcon(): Você usa o método addSvgIcon() do MatIcon
 Sanitizar a URL com bypassSecurityTrustResourceUrl(): Como a URL do arquivo SVG pode vir de uma fonte externa, é importante sanitizá-la usando this.domSanitizer.bypassSecurityTrustResourceUrl() antes de passá-la para o MatIconRegistry. Isso garante que a URL é segura para ser usada pelo Angula.
 Exibir o ícone no template com <mat-icon>: No seu template, você usa a tag <mat-icon> e especifica o nome do ícone registrado dentro da tag (por exemplo, <mat-icon svgIcon="facebook"></mat-icon>).
 Importância de DomSanitizer: O DomSanitizer é um serviço do Angular que ajuda a prevenir ataques de Cross-Site Scripting (XSS) ao marcar valores como seguros para serem usados em contextos sensíveis, como URLs de recursos. Ao usar bypassSecurityTrustResourceUrl(), você está dizendo ao Angular que confia na URL fornecida e que ela pode ser usada para carregar o ícone SVG. Sem a sanitização, o Angular bloquearia o carregamento de URLs potencialmente inseguras.
+
+
+
+dia 2>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Excelente! Vamos mudar o foco para perguntas que te ajudem a aprender mais sobre Angular Material e seus componentes, com base no que vimos hoje no seu código:
+
+Pergunta 1: No seu home.component.html, você utilizou o componente <mat-grid-list>. Qual é o principal propósito desse componente do Angular Material e quais propriedades você usou para configurar o layout dos cards de carro?
+
+Resposta 1: O principal propósito do <mat-grid-list> é exibir conteúdo em uma estrutura de grade bidimensional. As propriedades que você usou foram cols para definir o número de colunas da grade, rowHeight para definir a proporção da altura de cada célula da grade e gutterSize para definir o espaçamento entre as células da grade.
+
+Pergunta 2: Dentro do <mat-grid-list>, você usou <mat-grid-tile> com a diretiva *ngFor. Qual é a função do <mat-grid-tile> e como ele se relaciona com o <mat-grid-list> para exibir os cards de carro dinamicamente?
+
+Resposta 2: O <mat-grid-tile> representa uma célula individual dentro da grade definida pelo <mat-grid-list>. Ao usar *ngFor, você está iterando sobre a sua array carsDestaque e criando um <mat-grid-tile> para cada objeto de carro. Cada mat-grid-tile contém o componente <app-car-card>, exibindo as informações de um carro específico na grade.
+
+Pergunta 3: No seu car-card.component.html, você utilizou o componente <mat-card>. Quais são os principais benefícios de usar o <mat-card> do Angular Material para exibir informações como as de um carro? Mencione pelo menos dois.
+
+Resposta 3: Dois benefícios principais de usar o <mat-card> são:
+* Estrutura Semântica: Ele fornece uma estrutura clara e semântica para agrupar conteúdo relacionado, como cabeçalho (<mat-card-header>), imagem (<mat-card-image>), conteúdo (<mat-card-content>) e ações (<mat-card-actions>), facilitando a organização e o entendimento do código.
+* Estilização Consistente: O Angular Material fornece estilos predefinidos e consistentes para o <mat-card> e seus elementos internos, garantindo uma aparência profissional e alinhada com as diretrizes de Material Design, além de facilitar a personalização através de classes CSS.
+
+Pergunta 4: Você utilizou <mat-button> com diferentes atributos como color="primary" e color="accent". Qual é o propósito desses atributos de cor nos botões do Angular Material e quais outras opções de cor estão tipicamente disponíveis?
+
+Resposta 4: O propósito dos atributos de cor é aplicar temas de cores predefinidos aos botões, alinhando-os com o esquema de cores geral do seu aplicativo Material Design. As opções de cor tipicamente disponíveis são primary (geralmente a cor principal da sua aplicação), accent (uma cor secundária usada para dar destaque) e warn (usada para ações destrutivas ou de alerta).
+
+Pergunta 5: No seu car-card.component.html, você usou <mat-icon>. Como você adiciona ícones usando este componente do Angular Material e de onde esses ícones geralmente vêm?
+
+Resposta 5: Você adiciona ícones dentro do componente <mat-icon> simplesmente incluindo o nome do ícone como conteúdo de texto entre as tags (por exemplo, <mat-icon>add_shopping_cart</mat-icon>). Por padrão, o Angular Material utiliza a fonte de ícones Material Icons do Google, que oferece uma vasta biblioteca de ícones prontos para uso. Para usar esses ícones, você precisa garantir que a fonte Material Icons esteja incluída no seu projeto (geralmente adicionando um link no index.html).
