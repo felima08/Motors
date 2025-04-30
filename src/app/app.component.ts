@@ -13,13 +13,12 @@ import { MatListModule } from '@angular/material/list';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,
-    MeuFormularioComponent,
+    RouterOutlet, 
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatListModule,
+    MatListModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

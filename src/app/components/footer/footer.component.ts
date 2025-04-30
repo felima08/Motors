@@ -19,19 +19,8 @@ export class FooterComponent implements OnInit {
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, viewportScroller: ViewportScroller ) {
 
     this.viewportScroller = viewportScroller;
-    this.matIconRegistry.addSvgIcon(
-      'facebook',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/facebook.svg') // <----- Ajuste de caminho (se FooterComponent estiver em src/app/)
-    );
-    this.matIconRegistry.addSvgIcon(
-      'instagram',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/instagram.svg') // <----- Ajuste de caminho (se FooterComponent estiver em src/app/)
-    );
-    this.matIconRegistry.addSvgIcon(
-      'twitter',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/twitter.svg') // <----- Ajuste de caminho (se FooterComponent estiver em src/app/)
-    );
-    // Adicione outros ícones SVG conforme necessário
+ 
+    
   }
   scrollToTop() {
     this.viewportScroller.scrollToPosition([0, 0]);

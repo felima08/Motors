@@ -38,7 +38,6 @@ interface Cupom {
     MatCardModule,
     MatDividerModule,
     HeaderComponent,
-    FooterComponent,
     FormsModule, 
     MatFormFieldModule, 
     MatInputModule, 

@@ -31,7 +31,6 @@ import { MatCardModule } from '@angular/material/card'; // Importe MatCardModule
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
-        HeaderComponent,
         MatSelectModule,
         MatIconModule,
         MatListModule,

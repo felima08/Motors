@@ -95,9 +95,7 @@
   align-items: center;
 }
 
-.acoes-detalhe button {
-  /* Estilos para os botões de ação (Adicionar ao Carrinho, Voltar) */
-}
+
 
 .acoes-detalhe button:not(.voltar-button) {
   /* Estilos específicos para o botão "Adicionar ao Carrinho" */

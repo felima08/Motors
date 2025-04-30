@@ -5,9 +5,19 @@ import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { DetalhesComponent } from './components/detalhes/detalhes.component';
 import { CheckoutEntregaComponent } from './components/checkout-entrega/checkout-entrega.component';
+import { ListaUsuarioComponent } from './components/lista-de-usuario/lista-usuario.component';
 import { authGuard } from './auth.guard';
+import path from 'path';
 
 export const routes: Routes = [
+
+  {
+    path: 'lista-de-usuario',
+    component: ListaUsuarioComponent,
+    pathMatch: 'full',
+  },
+
+
   {
     path: '',
     redirectTo: 'login',
@@ -23,8 +33,7 @@ export const routes: Routes = [
     component: PerfilComponent,
     canActivate: [authGuard],
     children: [
-      // A LINHA ABAIXO FOI REMOVIDA
-      // { path: 'detalhe-pedido/:id', component: DetalhePedidoComponent } // Rota filha para detalhes do pedido
+      
     ]
   },
   {

@@ -12,15 +12,70 @@
       "estado": "SP",
       "cep": "04913-044",
       "cpf": "523.114.848-26",
-      "fotoPerfilUrl": "/assets/images/perfil.webp"
+      "fotoPerfilUrl": "/assets/images/perfil.webp",
+      "status": "desativado"
     },
     {
       "id": "2",
-      "name": "marcia soares",
+      "name": "marcia",
+      "telefone": "11978901234",
       "email": "soares@gmail.com",
-      "password": "soares321",
-      "fotoPerfilUrl": "images.jpg"
+      "status": "ativa"
+    },
+    {
+      "id": "3",
+      "name": "luis",
+      "telefone": "21987650987",
+      "email": "luis321@gmail.com",
+      "status": "ativa"
+    },{
+      "id": "4",
+      "name": "ana_silva",
+      "telefone": "31991234567",
+      "email": "ana_silva@gmail.com",
+      "status": "ativa"
+    },
+    {
+      "id": "5",
+      "name": "pedro_almeida",
+      "telefone": "41988761234",
+      "email": "pedro_almeida@gmail.com",
+      "status": "ativa"
+    },
+    {
+      "id": "6",
+      "name": "julia_costa",
+      "telefone": "51992345678",
+      "email": "julia_costa@gmail.com",
+      "status": "ativa"
+    },
+    {
+      "id": "7",
+      "name": "lucas_pereira",
+      "telefone": "119901557454",
+      "email": "lucas_pereira@gmail.com",
+      "status": "desativado"
+    },{
+      "id": "8",
+      "name": "sofia_rodrigues",
+      "telefone": "61985678901",
+      "email": "sofia_rodrigues@gmail.com",
+      "status": "ativa"
+    },
+    {
+      "id": "9",
+      "name": "gabriel_martins",
+      "telefone": "71993456789",
+      "email": "gabriel_martins@gmail.com",
+      "status": "ativa"
+    },{
+      "id": "10",
+      "name": "isabela_ferreira",
+      "telefone": "81986789012",
+      "email": "isabela_ferreira@gmail.com",
+      "status": "ativa"
     }
+  
   ],
   "produtos": [
     {
@@ -102,11 +157,81 @@
       },
       "cupomUsado": null,
       "valorDesconto": 0
+    },
+    {
+      "id": "compra_1745932992999",
+      "itensComprados": [
+        "2"
+      ],
+      "total": 48000.5,
+      "dataCompra": "2025-04-29T13:23:12.999Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "PAC"
+      },
+      "cupomUsado": null,
+      "valorDesconto": 0
+    },
+    {
+      "id": "compra_1745933083301",
+      "itensComprados": [
+        "3"
+      ],
+      "total": 62500.99,
+      "dataCompra": "2025-04-29T13:24:43.301Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "PAC"
+      },
+      "cupomUsado": null,
+      "valorDesconto": 0
+    },
+    {
+      "id": "compra_1745933226046",
+      "itensComprados": [
+        "3"
+      ],
+      "total": 62500.99,
+      "dataCompra": "2025-04-29T13:27:06.046Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 2",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "PAC"
+      },
+      "cupomUsado": null,
+      "valorDesconto": 0
+    },
+    {
+      "id": "compra_1745939282425",
+      "itensComprados": [
+        "2"
+      ],
+      "total": 48000.5,
+      "dataCompra": "2025-04-29T15:08:02.425Z",
+      "usuarioId": "1",
+      "enderecoEntrega": {
+        "endereco": "Rua Ernesto Antônio Moraes 6",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "04913-040",
+        "metodoEnvio": "PAC"
+      },
+      "cupomUsado": null,
+      "valorDesconto": 0
     }
   ],
-  "passwordResetRequests": [
-  
-  ],
+  "passwordResetRequests": [],
   "cupons": [
     {
       "id": "1",

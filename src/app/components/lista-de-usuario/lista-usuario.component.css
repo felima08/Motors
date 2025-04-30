@@ -1,0 +1,34 @@
+table {
+    width: 100%;
+    padding: 20px;
+   
+  }
+
+
+button{
+margin: 5px;
+
+}
+
+th{
+  background-color: #3f51b5 !important;
+  color: white;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-mdc-icon-button{
+  color: white;
+}
+
+
+
+
+
+
+
+
+  
+  
