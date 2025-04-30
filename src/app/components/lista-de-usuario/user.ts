@@ -1,7 +1,7 @@
 export interface User{
     name: string;
-  id: number;
+  id: string;
   email:string;
   telefone: string;
-  status: string;
+  status: boolean;
 }

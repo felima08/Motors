@@ -85,3 +85,56 @@ Resposta 4: O propósito dos atributos de cor é aplicar temas de cores predefin
 Pergunta 5: No seu car-card.component.html, você usou <mat-icon>. Como você adiciona ícones usando este componente do Angular Material e de onde esses ícones geralmente vêm?
 
 Resposta 5: Você adiciona ícones dentro do componente <mat-icon> simplesmente incluindo o nome do ícone como conteúdo de texto entre as tags (por exemplo, <mat-icon>add_shopping_cart</mat-icon>). Por padrão, o Angular Material utiliza a fonte de ícones Material Icons do Google, que oferece uma vasta biblioteca de ícones prontos para uso. Para usar esses ícones, você precisa garantir que a fonte Material Icons esteja incluída no seu projeto (geralmente adicionando um link no index.html).
+
+
+
+
+
+Excelente! Para te ajudar a internalizar bem esses conceitos, preparei algumas perguntas focadas na atividade prática e nos tópicos relacionados.
+
+Perguntas sobre a Atividade Prática:
+
+Ordem de Inicialização:
+
+Explique por que a propriedade inputElement (referenciada com @ViewChild) é undefined dentro do ngOnInit e somente possui uma referência ao elemento HTML no ngAfterViewInit.
+Qual é a implicação dessa ordem para a lógica que depende de elementos do DOM dentro de um componente Angular?
+Ciclo de Vida e Componentes Filhos:
+
+Se o LifecycleDemoComponent tivesse um componente filho e você usasse @ViewChild para obter uma referência a esse componente filho, em qual dos lifecycle hooks (ngOnInit, ngAfterViewInit) essa referência estaria disponível? Justifique sua resposta.
+ngOnDestroy e Limpeza:
+
+Explique o propósito do lifecycle hook ngOnDestroy.
+Dê um exemplo prático de um cenário em que a implementação do ngOnDestroy é crucial para evitar problemas na sua aplicação Angular.
+ngOnChanges e Propriedades de Entrada:
+
+Para observar o ngOnChanges, você precisaria adicionar uma propriedade @Input() ao LifecycleDemoComponent e alterá-la de um componente pai. Explique como o ngOnChanges funciona e quando ele é chamado em relação a outros lifecycle hooks. (Você pode pesquisar sobre este se não tiver feito a modificação na atividade).
+@ViewChild vs. @ViewChildren:
+
+Qual é a principal diferença entre os decorators @ViewChild e @ViewChildren?
+Em que tipo de cenário você usaria @ViewChildren em vez de @ViewChild?
+Manipulação Direta do DOM:
+
+No exemplo, o nativeElement do inputElement é acessado no ngAfterViewInit para aplicar o foco. Em geral, qual é a abordagem recomendada para interagir com elementos do DOM no Angular? Existem alternativas ao acesso direto via nativeElement?
+Links de Lugares para Estudar Angular:
+
+Documentação Oficial do Angular:
+
+Página Principal: https://angular.io/docs
+Lifecycle Hooks: https://angular.io/guide/lifecycle-hooks
+Component Interaction (inclui @ViewChild): https://angular.io/guide/component-interaction
+Angular Material (para entender o MatPaginator e MatSort): https://material.angular.io/components/table/overview
+Angular University:
+
+Página Principal: https://angular-university.io/ (Cursos pagos de alta qualidade)
+Você pode procurar por cursos específicos sobre "Angular Core Deep Dive" ou "Angular Material".
+Udemy:
+
+Procure por cursos com termos como "Angular - The Complete Guide", "Angular (Fullstack Development)", etc. Filtre por avaliações e número de alunos.
+YouTube:
+
+The Net Ninja: https://www.google.com/search?q=https://www.youtube.com/%40thenetninja (Procure por playlists de Angular)
+freeCodeCamp.org: https://www.youtube.com/@freecodecamp (Busque por cursos de Angular)
+Stack Overflow:
+
+https://stackoverflow.com/questions/tagged/angular (Use a barra de pesquisa para encontrar respostas para dúvidas específicas)
+Dica: Ao estudar, tente sempre relacionar o que você aprende com a atividade prática. Por exemplo, ao ler sobre ngAfterViewInit, lembre-se do cenário em que o inputElement se tornou disponível. Isso ajudará a solidificar o conhecimento.
