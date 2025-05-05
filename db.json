@@ -28,7 +28,8 @@
       "telefone": "21987650987",
       "email": "luis321@gmail.com",
       "status": "ativa"
-    },{
+    },
+    {
       "id": "4",
       "name": "ana_silva",
       "telefone": "31991234567",
@@ -55,7 +56,8 @@
       "telefone": "119901557454",
       "email": "lucas_pereira@gmail.com",
       "status": "desativado"
-    },{
+    },
+    {
       "id": "8",
       "name": "sofia_rodrigues",
       "telefone": "61985678901",
@@ -68,14 +70,21 @@
       "telefone": "71993456789",
       "email": "gabriel_martins@gmail.com",
       "status": "ativa"
-    },{
+    },
+    {
       "id": "10",
       "name": "isabela_ferreira",
       "telefone": "81986789012",
       "email": "isabela_ferreira@gmail.com",
       "status": "ativa"
+    },
+    {
+      "id": "11",
+      "name": "ruan",
+      "telefone": "11990155753",
+      "email": "ruan12@gmail.com",
+      "status": "ativo"
     }
-  
   ],
   "produtos": [
     {
