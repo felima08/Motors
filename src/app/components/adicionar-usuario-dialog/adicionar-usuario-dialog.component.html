@@ -5,7 +5,7 @@
 
     <mat-form-field appearance="outline">
         <mat-label>ID</mat-label>
-        <input matInput placeholder="Id" formControlName="Id">
+        <input matInput placeholder="Id" formControlName="id">
         <mat-error *ngIf="form.controls['id'].hasError('required')">Id é obrigatório.</mat-error>
       </mat-form-field>
 
@@ -31,8 +31,8 @@
     <mat-form-field appearance="outline">
       <mat-label>Status</mat-label>
       <mat-select formControlName="status">
-        <mat-option value="ativo">Ativo</mat-option>
-        <mat-option value="inativo">Inativo</mat-option>
+        <mat-option value="ativo">Ativa</mat-option>
+        <mat-option value="inativo">Desativado</mat-option>
       </mat-select>
     </mat-form-field>
     </form>

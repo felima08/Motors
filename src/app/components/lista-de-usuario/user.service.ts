@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 import { User } from './user';
 
 @Injectable({
-  providedIn: 'root', // Ou o módulo onde você registrou o UserService
+  providedIn: 'root', 
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3000'; // Sua URL base da API
+  
+  private apiUrl = 'http://localhost:3000'; 
 
   constructor(private http: HttpClient) { }
 
@@ -18,4 +19,12 @@ export class UserService {
   create(user: any): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/users`, user);
   }
+ update(user: any): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/users/${user.id}`, user);
+  }
+
+  delete(id:any): Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/users/${id}`);
+  }
+ 
 }

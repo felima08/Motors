@@ -71,6 +71,42 @@ export class ListaUsuarioComponent implements OnInit {
 
   dataSource!: MatTableDataSource<User>;
 
+  editarUsuario(): void{
+    const dialogRef = this.dialog.open(AdicionarUsuarioDialogComponent,{ 
+      width: '400px',
+      
+
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.userService.update(result).subscribe({
+          next: (usuarioAtualizado: User) => {
+            const index = this.dataSource.data.findIndex(u => u.id === usuarioAtualizado.id);
+            if (index >= 0) {
+              this.dataSource.data[index] = usuarioAtualizado;
+              this.dataSource.data = [...this.dataSource.data];
+            }
+          }
+        });
+      }
+    });
+     }
+
+    deletarUsuario(id: number): void{
+  if (confirm('tem certeza que deseja excluir este usuario')){
+     this.userService.delete(id).subscribe({
+      next: () => {
+        this.dataSource.data = this.dataSource.data.filter(u => u.id !== id);
+      }
+     });
+  }
+    
+    }
+
+  
+
   Filterchange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value.trim().toLowerCase();
