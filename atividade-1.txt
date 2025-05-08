@@ -138,3 +138,297 @@ Stack Overflow:
 
 https://stackoverflow.com/questions/tagged/angular (Use a barra de pesquisa para encontrar respostas para dúvidas específicas)
 Dica: Ao estudar, tente sempre relacionar o que você aprende com a atividade prática. Por exemplo, ao ler sobre ngAfterViewInit, lembre-se do cenário em que o inputElement se tornou disponível. Isso ajudará a solidificar o conhecimento.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DIA 08 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sem problemas! Vamos simplificar as atividades e focar em exemplos de lógica que são comuns em Angular e TypeScript.
+
+Exemplos de Lógica Simples (com foco em Angular/TypeScript):
+
+Alternar o valor de uma propriedade booleana:
+
+TypeScript
+
+// Em um componente Angular:
+export class MeuComponente {
+  exibirMensagem: boolean = false;
+
+  alternarMensagem(): void {
+    this.exibirMensagem = !this.exibirMensagem;
+  }
+}
+
+// No template:
+<button (click)="alternarMensagem()">Alternar Mensagem</button>
+<div *ngIf="exibirMensagem">Esta mensagem está visível!</div>
+Lógica: A função alternarMensagem simplesmente inverte o valor da propriedade exibirMensagem (de true para false e vice-versa). No template, *ngIf usa essa lógica para controlar a visibilidade de um elemento.
+
+Filtrar uma lista de itens com base em um texto de entrada:
+
+TypeScript
+
+// Em um componente Angular:
+export class ListaComponente {
+  itens: string[] = ['Maçã', 'Banana', 'Laranja', 'Abacaxi'];
+  filtro: string = '';
+  itensFiltrados: string[] = [...this.itens]; // Inicializa com todos os itens
+
+  filtrarItens(): void {
+    this.itensFiltrados = this.itens.filter(item =>
+      item.toLowerCase().includes(this.filtro.toLowerCase())
+    );
+  }
+
+  atualizarFiltro(event: Event): void {
+    this.filtro = (event.target as HTMLInputElement).value;
+    this.filtrarItens();
+  }
+}
+
+// No template:
+<input type="text" (input)="atualizarFiltro($event)" placeholder="Filtrar itens">
+<ul>
+  <li *ngFor="let item of itensFiltrados">{{ item }}</li>
+</ul>
+Lógica: A função filtrarItens usa o método filter de arrays em JavaScript/TypeScript para criar um novo array contendo apenas os itens que incluem o texto digitado no filtro (ignorando a caixa alta/baixa com toLowerCase() e includes()). A função atualizarFiltro atualiza o valor do filtro a cada digitação e chama filtrarItens.
+
+Controlar a exibição de detalhes ao clicar em um item de uma lista:
+
+TypeScript
+
+// Em um componente Angular:
+export class ListaDetalheComponent {
+  itens: { id: number; nome: string; detalhes: string }[] = [
+    { id: 1, nome: 'Item A', detalhes: 'Detalhes do Item A' },
+    { id: 2, nome: 'Item B', detalhes: 'Detalhes do Item B' },
+  ];
+  itemSelecionado: { id: number; nome: string; detalhes: string } | null = null;
+
+  mostrarDetalhes(item: { id: number; nome: string; detalhes: string }): void {
+    this.itemSelecionado = item;
+  }
+}
+
+// No template:
+<ul>
+  <li *ngFor="let item of itens" (click)="mostrarDetalhes(item)">{{ item.nome }}</li>
+</ul>
+
+<div *ngIf="itemSelecionado">
+  <h3>Detalhes de {{ itemSelecionado.nome }}</h3>
+  <p>{{ itemSelecionado.detalhes }}</p>
+</div>
+Lógica: A função mostrarDetalhes atribui o item clicado à propriedade itemSelecionado. O *ngIf no template usa essa propriedade para exibir a seção de detalhes apenas quando um item é selecionado.
+
+Atividades de Lógica Mais Simples (com foco em Angular/TypeScript):
+
+Crie um componente com um botão e uma propriedade numérica inicializada em 0. Ao clicar no botão, incremente o valor dessa propriedade em 1 e exiba o valor no template.
+Crie um componente com um array de nomes. Use *ngFor para exibir a lista. Adicione um botão que, ao ser clicado, adiciona um novo nome fixo ao array e atualiza a exibição.
+Crie um componente com duas propriedades numéricas e um botão. Ao clicar no botão, calcule a soma dessas duas propriedades e exiba o resultado no template.
+Crie um componente com um input de texto e um texto de exibição. Ao digitar no input, atualize o texto de exibição com o que foi digitado (two-way binding ou event binding).
+Esses exemplos e atividades são mais focados em cenários comuns no desenvolvimento Angular e utilizam conceitos como manipulação de propriedades, eventos, listas e exibição condicional. Tente resolver essas atividades passo a passo. Se tiver alguma dificuldade em algum ponto, me diga onde você travou e podemos trabalhar juntos na lógica! 
+
+
+// Importações de módulos e componentes necessários do Angular e Angular Material
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table'; // Para tabelas
+import { User } from './user'; // Modelo de usuário
+import { UserService } from './user.service'; // Serviço para comunicação com API
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator'; // Paginação
+import { MatCardModule } from '@angular/material/card'; // Cards
+import { MatButtonModule } from '@angular/material/button'; // Botões
+import { MatFormFieldModule } from '@angular/material/form-field'; // Campos de formulário
+import { MatSort, MatSortModule } from '@angular/material/sort'; // Ordenação
+import { MatInputModule } from '@angular/material/input'; // Inputs
+import { MatToolbarModule } from '@angular/material/toolbar'; // Barra de ferramentas
+import { MatIconModule } from '@angular/material/icon'; // Ícones
+import { MatMenuModule } from '@angular/material/menu'; // Menus
+import { MatSidenavModule } from '@angular/material/sidenav'; // Sidebar
+import { MatListModule } from '@angular/material/list'; // Listas
+import { MatDialog, MatDialogModule } from '@angular/material/dialog'; // Diálogos modais
+import { AdicionarUsuarioDialogComponent } from '../adicionar-usuario-dialog/adicionar-usuario-dialog.component'; // Componente de diálogo
+import { takeUntil } from 'rxjs/operators'; // Operador para gerenciar subscriptions
+import { Subject } from 'rxjs'; // Para gerenciar ciclo de vida
+
+@Component({
+  selector: 'app-lista-usuario',
+  imports: [ // Módulos importados para uso no template
+    MatTableModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSortModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDialogModule
+  ],
+  providers: [UserService], // Provedor do serviço de usuários
+  templateUrl: './lista-usuario.component.html', // Template HTML
+  styleUrl: './lista-usuario.component.css', // Estilos CSS
+  standalone: true, // Componente standalone (não precisa de módulo)
+})
+export class ListaUsuarioComponent implements OnInit, OnDestroy {
+  // Colunas exibidas na tabela
+  displayedColumns: string[] = ['id', 'name', 'telefone', 'email', 'status', 'action'];
+  
+  // Referências aos elementos de paginação e ordenação
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  
+  // Subject para gerenciar destruição de subscriptions
+  private readonly destroy$ = new Subject<void>();
+  
+  // Fonte de dados para a tabela
+  dataSource!: MatTableDataSource<User>;
+
+  constructor(
+    private userService: UserService, // Injeção do serviço
+    public dialog: MatDialog // Injeção do serviço de diálogos
+  ) { }
+
+  // Método do ciclo de vida - destruição do componente
+  ngOnDestroy(): void {
+    this.destroy$.next(); // Emite valor para cancelar subscriptions
+    this.destroy$.complete(); // Completa o subject
+  };
+
+  // Método do ciclo de vida - inicialização do componente
+  ngOnInit(): void {
+    this.carregarUsuarios();
+  }
+
+  // Carrega usuários do serviço
+  private carregarUsuarios(): void {
+    this.userService.list().subscribe({
+      next: (data) => {
+        // Cria fonte de dados para a tabela
+        this.dataSource = new MatTableDataSource<User>(data);
+        // Configura paginação
+        this.dataSource.paginator = this.paginator;
+        // Configura ordenação
+        this.dataSource.sort = this.sort;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar usuários:', error);
+      }
+    });
+  }
+
+  // Abre diálogo para editar usuário
+  editarUsuario(usuario: User): void {
+    const dialogRef = this.dialog.open(AdicionarUsuarioDialogComponent, { 
+      width: '500px',
+      data: usuario // Passa o usuário para edição
+    });
+
+    // Após fechar o diálogo
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Atualiza usuário no servidor
+        this.userService.update(result).subscribe({
+          next: (usuarioAtualizado: User) => {
+            // Atualiza localmente
+            const index = this.dataSource.data.findIndex(u => u.id === usuarioAtualizado.id);
+            if (index >= 0) {
+              this.dataSource.data[index] = usuarioAtualizado;
+              this.dataSource.data = [...this.dataSource.data]; // Força atualização
+            }
+          }
+        });
+      }
+    });
+  }
+
+  // Exclui usuário
+  deletarUsuario(id: number): void {
+    if (confirm('Tem certeza que deseja excluir este usuário?')) {
+      this.userService.delete(id).subscribe({
+        next: () => {
+          // Remove usuário da lista local
+          this.dataSource.data = this.dataSource.data.filter(u => u.id !== id);
+        }
+      });
+    }
+  }
+
+  // Filtra tabela
+  Filterchange(data: Event) {
+    const value = (data.target as HTMLInputElement).value;
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
+
+  // Adiciona novo usuário
+  adicionarNovoUsuario(): void {
+    const dialogRef = this.dialog.open(AdicionarUsuarioDialogComponent, {
+      width: '400px',
+    });
+  
+    // Após fechar o diálogo
+    dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(result => {
+      if (result) {
+        // Cria novo usuário no servidor
+        this.userService.create(result).pipe(takeUntil(this.destroy$)).subscribe({
+          next: (novoUsuarioDoBackend) => {
+            // Adiciona novo usuário à lista
+            this.dataSource.data = [...this.dataSource.data, novoUsuarioDoBackend];
+            // Vai para primeira página
+            this.paginator.firstPage();
+            // Atualiza paginação
+            this.dataSource.paginator = this.paginator;
+            // Força atualização da tabela
+            this.dataSource._updateChangeSubscription();
+          },
+          error: (error: any) => {
+            console.error('Erro ao adicionar usuário:', error);
+          }
+        });
+      }
+    });
+  }
+}

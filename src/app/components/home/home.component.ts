@@ -66,8 +66,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private carrinhoService = inject(CarrinhoService);
   private snackBar = inject(MatSnackBar);
   private estoqueService = inject(EstoqueService); // Injeta o EstoqueService
+  private router = inject(Router);
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.carregarDestaquesComEstoque();

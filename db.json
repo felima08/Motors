@@ -77,20 +77,6 @@
       "telefone": "81986789012",
       "email": "isabela_ferreira@gmail.com",
       "status": "ativa"
-    },
-    {
-      "id": "11",
-      "name": "ruan",
-      "telefone": "11990155753",
-      "email": "ruan12@gmail.com",
-      "status": "ativo"
-    },
-    {
-      "id": "12",
-      "name": "Ryan oliveira",
-      "telefone": "11990155752",
-      "email": "Ryanoliver@gmail.com",
-      "status": "ativo"
     }
   ],
   "produtos": [

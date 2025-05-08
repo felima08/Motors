@@ -73,7 +73,7 @@ export class ListaUsuarioComponent implements OnInit {
 
   editarUsuario(): void{
     const dialogRef = this.dialog.open(AdicionarUsuarioDialogComponent,{ 
-      width: '400px',
+      width: '500px',
       
 
     });
